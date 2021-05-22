@@ -1,0 +1,7 @@
+{
+	"window.zoomLevel": 0,
+	"editor.fontFamily": "Consolas, 'Courier New', monospace",
+	"editor.fontSize": 16,
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode"
+}

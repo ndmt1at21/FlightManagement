@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"target": "ES5",
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"sourceMap": true,
+		"strict": true,
+		"moduleResolution": "Node",
+		"isolatedModules": true,
+		"resolveJsonModule": true,
+		"module": "commonjs",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"allowJs": false,
+		"baseUrl": "./",
+		"outDir": "./dist"
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules"]
+}
