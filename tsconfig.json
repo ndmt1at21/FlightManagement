@@ -1,11 +1,14 @@
 {
 	"compilerOptions": {
-		"target": "ES5",
+		"target": "es5",
 		"noImplicitAny": true,
 		"noImplicitReturns": true,
 		"noImplicitThis": true,
 		"sourceMap": true,
 		"strict": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"strictPropertyInitialization": false,
 		"moduleResolution": "Node",
 		"isolatedModules": true,
 		"resolveJsonModule": true,
@@ -13,8 +16,12 @@
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"allowJs": false,
-		"baseUrl": "./",
-		"outDir": "./dist"
+		"baseUrl": ".",
+		"outDir": "dist",
+		"paths": {
+			"@server/*": ["src/server/*"],
+			"@client/*": ["src/client/*"]
+		}
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules"]
