@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static(`${__dirname}/public`));
-app.use('/', userRouter);
+app.use('/users', userRouter);
 app.use(errorHandler.globalErrorHandler);
 
 export default app;

@@ -1,6 +1,6 @@
 import app from './app';
 import { createConnection } from 'typeorm';
-import { ormOptions } from './ormConfig';
+import { ormOptions } from './typeormConfig';
 
 // Init node server
 const initServer = () => {

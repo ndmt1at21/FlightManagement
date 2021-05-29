@@ -6,7 +6,7 @@ export const ormOptions: ConnectionOptions = {
 	url: process.env.DATABASE_URL,
 	synchronize: true,
 	logging: false,
-	entities: [__dirname + './models/**/*.ts'],
+	entities: [__dirname + './models/**/*.ts', User],
 	extra: {
 		ssl: {
 			rejectUnauthorized: false
