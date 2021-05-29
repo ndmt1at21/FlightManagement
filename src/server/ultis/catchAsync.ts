@@ -1,4 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
+import { DatabaseError } from 'pg-protocol';
+import { QueryFailedError } from 'typeorm';
 
 type RequestHandler = {
 	(req: Request, res: Response, next: NextFunction): Promise<void>;

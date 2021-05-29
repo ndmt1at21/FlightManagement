@@ -1,15 +1,5 @@
-import {
-	Entity,
-	Column,
-	BeforeInsert,
-	BeforeUpdate,
-	ValueTransformer
-} from 'typeorm';
-
-const trimString: ValueTransformer = {
-	to: (value: string) => value.toLowerCase().trim(),
-	from: (value: string) => value
-};
+import { Entity, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { trimString } from '@server/ultis/columnTransform';
 
 @Entity()
 export class User {
