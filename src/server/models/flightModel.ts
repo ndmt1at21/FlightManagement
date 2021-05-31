@@ -1,8 +1,5 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate, AfterLoad, PrimaryColumn, OneToMany, ManyToOne, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
-import { trimString } from '../ultis/columnTransform';
-import {FlightSchedule} from './flightScheduleModel';
-import shortid from 'unique-string'
-import uniqueString from 'unique-string';
+
 @Entity()
 export class Flight {
 	@PrimaryColumn({generated: 'rowid'})

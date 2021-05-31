@@ -4,12 +4,12 @@ import catchAsync from '../ultis/catchAsync';
 
 const findAllFlight = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		const users = await flightServices.findAllFlight();
+		const flight = await flightServices.findAllFlight();
 
 		res.status(200).json({
 			status: 'success',
 			data: {
-				users
+				flight
 			}
 		});
 	}
