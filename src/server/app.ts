@@ -4,6 +4,7 @@ import userRouter from './routes/userRouter';
 import flightRouter from './routes/flightRouter';
 import fScheduleRouter from './routes/flightScheduleRouter';
 import ticketRouter from './routes/ticketRouter';
+import systemRouter from './routes/systemRouter';
 import path from 'path';
 import dotenv from 'dotenv';
 
@@ -19,6 +20,7 @@ app.use('/users', userRouter);
 app.use('/flight',flightRouter);
 app.use('/schedule',fScheduleRouter);
 app.use('/ticket',ticketRouter);
+app.use('/system',systemRouter);
 app.use(errorHandler.globalErrorHandler);
 
 export default app;
