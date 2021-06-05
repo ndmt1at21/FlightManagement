@@ -1,5 +1,5 @@
 import { Request, NextFunction, Response } from 'express';
-import AppError from '../ultis/appError';
+import {AppError} from '../ultis/appError';
 
 const isTrustedError = (err: Error) => {
 	if (err instanceof AppError) return true;

@@ -1,35 +1,36 @@
 import { NextFunction, Request, Response } from 'express';
-import * as userServices from '../services/userServices';
+import * as flightServices from '../services/flightServices';
 import catchAsync from '../ultis/catchAsync';
 
-const findAllUser = catchAsync(
+const findAllFlight = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		const users = await userServices.findAllUser();
+		const flight = await flightServices.findAllFlight();
 
 		res.status(200).json({
 			status: 'success',
 			data: {
-				users
+				flight
 			}
 		});
 	}
 );
 
-const insertUser = catchAsync(
+const insertFlight = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		await userServices.insertUser(req.body);
+		console.log(req.body);
+		await flightServices.insertFlight(req.body);
 		res.json({
-			message: "Add user successfully!!!",
+			message: "Add flight successfully!!!",
 		});
 	}
 );
 
-const insertdataUser = catchAsync(
+const insertdataFlight = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		await userServices.insertDataUser();
+		await flightServices.insertDataFlight();
 		res.json({
 			message: "Add data successfully!!!",
 		});
 	}
 );
-export = { findAllUser, insertUser, insertdataUser };
+export = { findAllFlight, insertFlight, insertdataFlight };
