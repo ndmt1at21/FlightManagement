@@ -1,12 +1,11 @@
 
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 import {Passenger} from './passengerModel';
-import {Flight} from './flightModel';
+import {FlightSchedule} from './flightScheduleModel';
 
 @Entity()
 export class Ticket{
-    @PrimaryColumn()
-    @OneToOne(() => Flight)
+    @PrimaryGeneratedColumn()
     id: number;
     
     @Column()
@@ -15,8 +14,10 @@ export class Ticket{
     @Column()
     giatien: number;
     
-    @Column()
-    @OneToOne(() => Passenger)
-    idKhachHang : number
+    @Column({nullable : true})
+    status: boolean;
+
+    @ManyToOne(() => FlightSchedule)
+    fs : number;
 }
 

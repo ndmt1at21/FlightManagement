@@ -13,7 +13,14 @@ export class FlightSchedule {
 	@Column({nullable : true, type: 'time'})
 	ThoiGian: string;
 	
+	@Column({nullable : true, type: 'time'})
+	ThoiGianBay: string;
 
+	@Column({default : 0})
+	SoGheDatThuong: number;
+
+	@Column({default : 0})
+	SoGheDatVip: number;
 	// // Hooks
 	// @BeforeInsert()
 	// @BeforeUpdate()

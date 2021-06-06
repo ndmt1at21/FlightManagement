@@ -1,5 +1,5 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate, AfterLoad, PrimaryColumn, OneToMany, ManyToOne, JoinColumn, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
-import {Inter_airpot} from './Inter_airportModel'
+import {Interairport} from './Inter_airportModel'
 @Entity()
 export class Flight {
 	@PrimaryColumn({generated: 'rowid'})
@@ -17,9 +17,9 @@ export class Flight {
 	@Column({ nullable: true,})
 	SLGheVip: number;
 	
-	@ManyToMany(() => Inter_airpot, {cascade : true})
+	@ManyToMany(() => Interairport, {cascade : true})
 	@JoinTable()
-	Inter : Inter_airpot[];
+	Inter : Interairport[];
 
 	// // Hooks
 	// @BeforeUpdate()

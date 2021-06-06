@@ -1,11 +1,12 @@
 import { Flight } from '../models/flightModel';
-import {Inter_airpot} from '../models/Inter_airportModel';
+import {Interairport} from '../models/Inter_airportModel';
 import { getManager, getConnection, In } from 'typeorm';
 
 const findAllFlight = async (): Promise<Flight[]> => {
 	const posRepo = getManager().getRepository(Flight);
 	return posRepo.find();
 };
+
 const insertFlight = async (dataFlight: any): Promise<void> => {
     await console.log(dataFlight);
     
@@ -13,7 +14,7 @@ const insertFlight = async (dataFlight: any): Promise<void> => {
     const flight = new Flight();
     flight.Inter = [];
     dataFlight.Inter.forEach((airport: any,index :number): void => {
-        const InterAir = new Inter_airpot(); 
+        const InterAir = new Interairport(); 
         InterAir.TenSB = airport.TenSB;
         InterAir.ThoiGianDung = airport.ThoiGianDung;
         InterAir.Ghichu = airport.GhiChu ? airport.GhiChu : "";

@@ -24,18 +24,18 @@ const insertTicket = catchAsync(
 	}
 );
 
-const findTicket = catchAsync(
-	async (req : Request, res: Response, next: NextFunction) => {
-		ticketServices.findTicket(req.body.email, req.body.CMND)
-		.then(function(data: any) {
-			res.status(200).json({
-				status: 'success',
-				data: {
-					data
-				}
-			});
-		})
-	}
-)
+// const findTicket = catchAsync(
+// 	async (req : Request, res: Response, next: NextFunction) => {
+// 		ticketServices.findTicket(req.body.email, req.body.CMND)
+// 		.then(function(data: any) {
+// 			res.status(200).json({
+// 				status: 'success',
+// 				data: {
+// 					data
+// 				}
+// 			});
+// 		})
+// 	}
+// )
 
-export = { findAllTicket, insertTicket, findTicket };
+export = { findAllTicket, insertTicket };

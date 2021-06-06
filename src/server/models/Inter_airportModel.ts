@@ -1,7 +1,7 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate, AfterLoad, PrimaryColumn, OneToMany, ManyToOne, JoinColumn, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
 
 @Entity()
-export class Inter_airpot {
+export class Interairport {
 	@PrimaryColumn({generated: 'rowid'})
 	id: number;
 

@@ -1,7 +1,7 @@
 
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 import { IsEmail, IsIdentityCard, IsMobilePhone } from 'class-validator';
-
+import {Ticket} from './ticketModel'
 @Entity()
 export class Passenger {
 	@PrimaryGeneratedColumn()
@@ -21,4 +21,8 @@ export class Passenger {
 	@Column({ unique: true })
 	@IsMobilePhone('vi-VN')
 	phone: string;
+
+	@ManyToMany(() => Ticket)
+	@JoinTable()
+	books: Ticket[];
 }
