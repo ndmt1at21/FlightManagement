@@ -21,6 +21,13 @@ export class FlightSchedule {
 
 	@Column({default : 0})
 	SoGheDatVip: number;
+
+	/**
+	 * TongSoGheDat
+	 */
+	public TongSoGheDat() {
+		return this.SoGheDatThuong + this.SoGheDatVip;
+	}
 	// // Hooks
 	// @BeforeInsert()
 	// @BeforeUpdate()

@@ -1,24 +1,24 @@
-import { System } from '../models/systemModel';
+import { Setting } from '../models/settingModel';
 import { getManager, getConnection } from 'typeorm';
 
-const ShowallSystem = async (): Promise<System[]> => {
-	const posRepo = getManager().getRepository(System);
+const ShowallSetting = async (): Promise<Setting[]> => {
+	const posRepo = getManager().getRepository(Setting);
 	return posRepo.find();
 };
-const updateSystem = async (data: any): Promise<void> => {
+const updateSetting = async (data: any): Promise<void> => {
     await console.log(data);
     await getConnection()
     .createQueryBuilder()
-    .update(System)
+    .update(Setting)
     .set({ giatri : data.giatri , tinhtrang: data.tinhtrang ? data.tinhtrang : true } )
     .where("id = :id",{id : data.id})
     .execute();
 };
-const insertSystem = async (): Promise<void> => {
+const insertSetting = async (): Promise<void> => {
 	await getConnection()
     .createQueryBuilder()
     .insert()
-    .into(System)
+    .into(Setting)
     .values([
         {tenthamso: "Số Sân Bay", kieu: "int", giatri: "10", tinhtrang: true},
         {tenthamso: "Thời gian bay tối thiểu", kieu: "time", giatri: "00:30:00", tinhtrang: true},
@@ -32,4 +32,4 @@ const insertSystem = async (): Promise<void> => {
     .execute();
 };
 
-export {ShowallSystem, insertSystem, updateSystem }
+export {ShowallSetting, insertSetting, updateSetting } 

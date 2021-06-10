@@ -4,7 +4,7 @@ import {Flight} from './models/flightModel';
 import {FlightSchedule} from './models/flightScheduleModel';
 import {Ticket} from './models/ticketModel';
 import {Passenger} from './models/passengerModel';
-import {System} from './models/systemModel';
+import {Setting} from './models/settingModel';
 import {Interairport} from './models/Inter_airportModel';
 export const ormOptions: ConnectionOptions = {
 	type: 'postgres',
@@ -12,7 +12,7 @@ export const ormOptions: ConnectionOptions = {
 	synchronize: true,
 	logging: false,
 	entities: [__dirname + './models/**/*{.ts,.js}', User , Flight, FlightSchedule ,
-	 Ticket , Passenger, System, Interairport],
+	 Ticket , Passenger, Setting, Interairport , ],
 	extra: {
 		ssl: {
 			rejectUnauthorized: false

@@ -5,16 +5,12 @@ const findAllUser = async (): Promise<User[]> => {
 	const posRepo = getManager().getRepository(User);
 	return posRepo.find();
 };
-const insertUser = async (dataUser: any): Promise<void> => {
-	let hashpw : any = await bcrypt.hash(dataUser.password,10);
-	await getConnection()
-    .createQueryBuilder()
-    .insert()
-    .into(User)
-    .values([
-        { name : dataUser.name, password: hashpw, lastName: dataUser.lastName, email: dataUser.email  }, 
-     ])
-    .execute();
+const comparePassword = (password : string, hash : string) : boolean => {
+    return bcrypt.compareSync(password,hash);
+}
+const getUser = async (username: any,email :any): Promise<any> => {
+	const posRepo = getManager().getRepository(User);
+	return posRepo.findOne({where : [{name : username}, {email : email}]});
 };
 const insertDataUser = async (): Promise<void> => {
 	await getConnection()
@@ -22,11 +18,10 @@ const insertDataUser = async (): Promise<void> => {
     .insert()
     .into(User)
     .values([
-        { name : "admin", password: await bcrypt.hash("admin123",10), lastName: "Admin", email: "admin123@gmail.com"  }, 
-        { name : "user1", password: await bcrypt.hash("123456789",10), lastName: "User1", email: "user1@gmail.com"  },
-        { name : "user2", password: await bcrypt.hash("123456789",10), lastName: "User2", email: "user2@gmail.com"  },
+        { Username : "admin", password: await bcrypt.hash("admin123",10), lastName: "Admin", email: "admin123@gmail.com", role: 'admin'  }, 
+        { Username : "user1", password: await bcrypt.hash("123456789",10), lastName: "User1", email: "user1@gmail.com" , role: 'user' },
+        { Username : "user2", password: await bcrypt.hash("123456789",10), lastName: "User2", email: "user2@gmail.com" , role: 'user' },
      ])
     .execute();
 };
-
-export {findAllUser, insertUser, insertDataUser }
+export {findAllUser, insertDataUser, getUser , comparePassword }

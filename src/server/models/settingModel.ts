@@ -1,6 +1,6 @@
 import { Entity, Column, BeforeInsert, BeforeUpdate, AfterLoad, PrimaryColumn, OneToMany, ManyToOne, JoinColumn, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 @Entity()
-export class System {
+export class Setting {
 	@PrimaryColumn({generated: 'rowid'})
 	id: number;
 

@@ -22,7 +22,7 @@ export class Passenger {
 	@IsMobilePhone('vi-VN')
 	phone: string;
 
-	@ManyToMany(() => Ticket)
+	@ManyToMany(() => Ticket, {cascade : true})
 	@JoinTable()
 	books: Ticket[];
 }

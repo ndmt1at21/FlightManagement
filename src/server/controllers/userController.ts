@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import * as userServices from '../services/userServices';
 import catchAsync from '../ultis/catchAsync';
-
 const findAllUser = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const users = await userServices.findAllUser();
@@ -15,15 +14,6 @@ const findAllUser = catchAsync(
 	}
 );
 
-const insertUser = catchAsync(
-	async (req: Request, res: Response, next: NextFunction) => {
-		await userServices.insertUser(req.body);
-		res.json({
-			message: "Add user successfully!!!",
-		});
-	}
-);
-
 const insertdataUser = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		await userServices.insertDataUser();
@@ -32,4 +22,4 @@ const insertdataUser = catchAsync(
 		});
 	}
 );
-export = { findAllUser, insertUser, insertdataUser };
+export = { findAllUser, insertdataUser };

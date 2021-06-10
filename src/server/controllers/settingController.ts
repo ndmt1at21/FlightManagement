@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
-import * as systemService from '../services/systemService';
+import * as SettingService from '../services/settingService';
 import catchAsync from '../ultis/catchAsync';
 
-const showAllSystem = catchAsync(
+const showAllSetting = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		const data = await systemService.ShowallSystem();
+		const data = await SettingService.ShowallSetting();
 
 		res.status(200).json({
 			status: 'success',
@@ -15,22 +15,22 @@ const showAllSystem = catchAsync(
 	}
 );
 
-const updateSystem = catchAsync(
+const updateSetting = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		const ticket = await systemService.updateSystem(req.body);
+		const ticket = await SettingService.updateSetting(req.body);
 		res.json({
 			message: "Update successfully!!!",
 		});
 	}
 );
 
-const insertSystem = catchAsync(
+const insertSetting = catchAsync(
 	async (req : Request, res: Response, next: NextFunction) => {
-		await systemService.insertSystem();
+		await SettingService.insertSetting();
 		res.json({
 			message: "Add data successfully!!!",
 		});
 	}
 )
 
-export = { showAllSystem, updateSystem, insertSystem };
+export = { showAllSetting, updateSetting, insertSetting };
