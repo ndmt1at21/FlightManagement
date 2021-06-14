@@ -1,7 +1,8 @@
+import { Setting } from '../models/settingModel';
 import { NextFunction, Request, Response } from 'express';
 import * as flightServices from '../services/flightServices';
 import catchAsync from '../ultis/catchAsync';
-
+import moment from 'moment';
 const findAllFlight = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const flight = await flightServices.findAllFlight();
@@ -15,22 +16,34 @@ const findAllFlight = catchAsync(
 	}
 );
 
-const insertFlight = catchAsync(
+const insertdataFlight = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		console.log(req.body);
-		await flightServices.insertFlight(req.body);
+		await flightServices.insertDataFlight();
 		res.json({
-			message: "Add flight successfully!!!",
+			message: 'Add data successfully!!!'
 		});
 	}
 );
 
-const insertdataFlight = catchAsync(
+const insertFlight = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		await flightServices.insertDataFlight();
+		flightServices.insertFlight(req.body);
 		res.json({
-			message: "Add data successfully!!!",
+			message: 'Add flight successfully!!!'
 		});
 	}
 );
-export = { findAllFlight, insertFlight, insertdataFlight };
+
+const check = catchAsync(
+	async (req: Request, res: Response, next: NextFunction) => {
+		let data = req.body;
+		let time = moment(data.time, 'LT').format('HH:mm');
+		console.log(time);
+		res.json({
+			data: time,
+			message: 'successfully!!!'
+		});
+	}
+);
+export = { findAllFlight, insertFlight, insertdataFlight, check };

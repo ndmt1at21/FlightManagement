@@ -5,6 +5,6 @@ const router = Router();
 
 router.get('/all', ticket.findAllTicket);
 router.post('/insert', ticket.insertTicket);
-// router.post('/find', ticket.findTicket);
+router.post('/update', ticket.updateTicket);
 
 export default router;

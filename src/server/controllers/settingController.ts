@@ -1,6 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import * as SettingService from '../services/settingService';
+import * as FlightService from '../services/flightServices';
+import { Setting } from '../models/settingModel';
 import catchAsync from '../ultis/catchAsync';
+import { getManager } from 'typeorm';
 
 const showAllSetting = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
@@ -17,20 +20,46 @@ const showAllSetting = catchAsync(
 
 const updateSetting = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
-		const ticket = await SettingService.updateSetting(req.body);
-		res.json({
-			message: "Update successfully!!!",
+		let { id, giatri, tinhtrang } = req.body;
+		let setting = new Setting();
+		console.log(req.body);
+		SettingService.getSetting(<number>id).then(caidat => {
+			if (caidat) {
+				setting = caidat;
+				setting.giatri = giatri;
+				setting.tinhtrang = tinhtrang ? tinhtrang : true;
+				console.log(setting);
+				if (setting.id === 1) {
+					FlightService.CheckNumberFlight().then(SoCB => {
+						if (SoCB > +setting.giatri) {
+							res.status(400).json({
+								message:
+									"Can't set setting from input, Please delete some flight or increase limit of flights !!!"
+							});
+						} else {
+							getManager().save(setting);
+							res.json({
+								message: 'Setting limit of the flights successfully !!!'
+							});
+						}
+					});
+				}
+			} else {
+				res.status(404).json({
+					message: "Can't find setting from input !!!"
+				});
+			}
 		});
 	}
 );
 
 const insertSetting = catchAsync(
-	async (req : Request, res: Response, next: NextFunction) => {
+	async (req: Request, res: Response, next: NextFunction) => {
 		await SettingService.insertSetting();
 		res.json({
-			message: "Add data successfully!!!",
+			message: 'Add data successfully!!!'
 		});
 	}
-)
+);
 
 export = { showAllSetting, updateSetting, insertSetting };

@@ -1,5 +1,6 @@
 import { Flight } from '../models/flightModel';
 import {Interairport} from '../models/Inter_airportModel';
+import {Setting} from '../models/settingModel';
 import { getManager, getConnection, In } from 'typeorm';
 
 const findAllFlight = async (): Promise<Flight[]> => {
@@ -7,22 +8,24 @@ const findAllFlight = async (): Promise<Flight[]> => {
 	return posRepo.find();
 };
 
+const CheckNumberFlight = (): Promise<number> => {
+    return getManager().count(Flight)
+}
+
 const insertFlight = async (dataFlight: any): Promise<void> => {
     await console.log(dataFlight);
-    
-    
     const flight = new Flight();
     flight.Inter = [];
-    dataFlight.Inter.forEach((airport: any,index :number): void => {
-        const InterAir = new Interairport(); 
-        InterAir.TenSB = airport.TenSB;
-        InterAir.ThoiGianDung = airport.ThoiGianDung;
-        InterAir.Ghichu = airport.GhiChu ? airport.GhiChu : "";
-        flight.Inter[index] = InterAir;
-        getManager().save(InterAir);
-    });
-    
-    
+    if(dataFlight.Inter){
+        dataFlight.Inter.forEach((airport: any,index :number): void => {
+            const InterAir = new Interairport(); 
+            InterAir.TenSB = airport.TenSB;
+            InterAir.ThoiGianDung = airport.ThoiGianDung;
+            InterAir.Ghichu = airport.GhiChu ? airport.GhiChu : "";
+            flight.Inter[index] = InterAir;
+            getManager().save(InterAir);
+        });
+    }
     flight.SBDen = dataFlight.SBDen;
     flight.SBDi =  dataFlight.SBDi;
     flight.SLGheThuong =  <number>dataFlight.SLGheThuong;
@@ -47,4 +50,4 @@ const insertDataFlight = async (): Promise<void> => {
     .execute();
 };
 
-export {findAllFlight, insertFlight, insertDataFlight }
+export {findAllFlight, insertFlight, insertDataFlight,CheckNumberFlight }

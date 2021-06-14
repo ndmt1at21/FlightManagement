@@ -1,7 +1,7 @@
-import { Entity, Column, BeforeInsert, BeforeUpdate, AfterLoad, PrimaryColumn, OneToMany, ManyToOne, JoinColumn, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import { Entity, Column, PrimaryColumn, getManager } from 'typeorm';
 @Entity()
 export class Setting {
-	@PrimaryColumn({generated: 'rowid'})
+	@PrimaryColumn({ generated: 'rowid' })
 	id: number;
 
 	@Column({ nullable: true })
@@ -10,12 +10,11 @@ export class Setting {
 	@Column()
 	kieu: string;
 
-	@Column({ nullable: true})
+	@Column({ nullable: true })
 	giatri: string;
 
-    @Column({ nullable: true})
+	@Column({ nullable: true })
 	tinhtrang: boolean;
-
 	// // Hooks
 	// @BeforeUpdate()
 }
