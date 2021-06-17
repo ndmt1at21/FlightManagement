@@ -22,6 +22,12 @@ const insertFSchedule = async (dataSchedule: any): Promise<void> => {
 	fs.ThoiGianBay = dataSchedule.ThoiGianBay;
 	getManager().save(fs);
 };
+const getFs = async (id: any): Promise<any> => {
+	return getManager().findOne(FlightSchedule, id);
+};
+const saveFs = async (data: FlightSchedule): Promise<void> => {
+	getManager().save(data);
+};
 const searchFlightSchedule = async (
 	SBDi: string,
 	SBDen: string,
@@ -39,4 +45,10 @@ const searchFlightSchedule = async (
 			.catch(error => console.log(error));
 	});
 };
-export { findAllFSchedule, insertFSchedule, searchFlightSchedule };
+export {
+	findAllFSchedule,
+	insertFSchedule,
+	searchFlightSchedule,
+	getFs,
+	saveFs
+};

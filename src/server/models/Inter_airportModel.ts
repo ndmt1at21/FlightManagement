@@ -1,19 +1,18 @@
-import { Entity, Column, BeforeInsert, BeforeUpdate, AfterLoad, PrimaryColumn, OneToMany, ManyToOne, JoinColumn, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
-
+import { Entity, Column, PrimaryColumn, ManyToOne } from 'typeorm';
+import { NameFlight } from './nameFlightModel';
 @Entity()
 export class Interairport {
-	@PrimaryColumn({generated: 'rowid'})
+	@PrimaryColumn({ generated: 'rowid' })
 	id: number;
 
-	@Column({ nullable: true })
+	@ManyToOne(() => NameFlight)
 	TenSB: string;
 
-	@Column({type : 'time'})
+	@Column({ type: 'time' })
 	ThoiGianDung: string;
 
-	@Column({ nullable: true})
+	@Column({ nullable: true })
 	Ghichu: string;
-
 
 	// // Hooks
 	// @BeforeUpdate()

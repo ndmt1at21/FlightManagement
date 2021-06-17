@@ -29,21 +29,6 @@ const updateSetting = catchAsync(
 				setting.giatri = giatri;
 				setting.tinhtrang = tinhtrang ? tinhtrang : true;
 				console.log(setting);
-				if (setting.id === 1) {
-					FlightService.CheckNumberFlight().then(SoCB => {
-						if (SoCB > +setting.giatri) {
-							res.status(400).json({
-								message:
-									"Can't set setting from input, Please delete some flight or increase limit of flights !!!"
-							});
-						} else {
-							getManager().save(setting);
-							res.json({
-								message: 'Setting limit of the flights successfully !!!'
-							});
-						}
-					});
-				}
 			} else {
 				res.status(404).json({
 					message: "Can't find setting from input !!!"

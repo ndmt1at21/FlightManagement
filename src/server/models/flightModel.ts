@@ -4,18 +4,22 @@ import {
 	PrimaryColumn,
 	ManyToMany,
 	JoinTable,
-	BeforeInsert
+	BeforeInsert,
+	ManyToOne,
+	JoinColumn,
+	PrimaryGeneratedColumn
 } from 'typeorm';
 import { Interairport } from './Inter_airportModel';
+import { NameFlight } from './nameFlightModel';
 @Entity()
 export class Flight {
-	@PrimaryColumn()
+	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ nullable: true })
+	@ManyToOne(() => NameFlight)
 	SBDi: string;
 
-	@Column({ nullable: true })
+	@ManyToOne(() => NameFlight)
 	SBDen: string;
 
 	@Column({ nullable: true })
