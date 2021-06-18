@@ -18,7 +18,7 @@ const insertTicket = async (dataTicket: any): Promise<void> => {
 		.findOne(Ticket, { hangve: dataTicket.hangve })
 		.then(data => {
 			if (data) {
-				ticket1.hangve++;
+				++ticket1.hangve;
 			}
 			getManager().save(ticket1);
 		});
@@ -27,7 +27,7 @@ const checkNumerTicket = async (id: any): Promise<any> => {
 	return getManager().count(Ticket, { fs: id });
 };
 const findTicket = async (id: any): Promise<any> => {
-	return getManager().findOne(Ticket, id);
+	return getManager().findOne(Ticket, id, { relations: ['fs'] });
 };
 
 const updateTicket = async (ticket: any): Promise<void> => {

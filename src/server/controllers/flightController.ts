@@ -92,6 +92,7 @@ const check = catchAsync(
 		});
 	}
 );
+
 export = {
 	findAllFlight,
 	insertFlight,

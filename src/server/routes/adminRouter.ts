@@ -1,12 +1,15 @@
 import { Router } from 'express';
 import userController from '../controllers/userController';
 import authController from '../controllers/authController';
+import fScheduleController from '../controllers/flightScheduleController';
 const router = Router();
 
-router.use(authController.IsloggedIn);
-router.get('/');
-router.get('/dashboard', userController.findAllUser);
-router.post('/', authController.register);
 router.post('/login', authController.login);
-router.post('/create',userController.insertdataUser);
+router.get('/dashboard', authController.IsloggedIn, userController.findAllUser);
+router.post(
+	'/listRevenutFlight',
+	authController.IsloggedIn,
+	fScheduleController.revenueFlight
+);
+
 export default router;

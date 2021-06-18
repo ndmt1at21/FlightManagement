@@ -22,11 +22,22 @@ const insertFSchedule = async (dataSchedule: any): Promise<void> => {
 	fs.ThoiGianBay = dataSchedule.ThoiGianBay;
 	getManager().save(fs);
 };
-const getFs = async (id: any): Promise<any> => {
-	return getManager().findOne(FlightSchedule, id);
-};
-const saveFs = async (data: FlightSchedule): Promise<void> => {
-	getManager().save(data);
+const NumberChair = async (
+	id: any,
+	hangve: any,
+	status: number
+): Promise<any> => {
+	getManager()
+		.findOne(FlightSchedule, id)
+		.then((fs: any) => {
+			if (hangve % 2 === 1) {
+				fs.SoGheDatThuong = fs.SoGheDatThuong + status;
+			} else {
+				fs.SoGheDatVip = fs.SoGheDatVip + status;
+			}
+			getManager().save(fs);
+		})
+		.catch(error => console.log(error));
 };
 const searchFlightSchedule = async (
 	SBDi: string,
@@ -45,10 +56,23 @@ const searchFlightSchedule = async (
 			.catch(error => console.log(error));
 	});
 };
+const revenueFlight = async (): Promise<any> => {
+	return new Promise<any>((resolve, rejects) => {
+		const query: string = `SELECT f.id, f."sBDenId", f."sBDiId", (fs."SoGheDatThuong" + fs."SoGheDatVip") as SoVe,
+		((fs."SoGheDatThuong" + fs."SoGheDatVip")*100)/(f."SLGheThuong" + f."SLGheVip") as TiLe
+		FROM Flight f join Flight_Schedule fs on f.id = fs."forCBId"
+		WHERE fs."SoGheDatThuong" + fs."SoGheDatVip" >= 1
+		`;
+		const data = getManager()
+			.query(query)
+			.then(result => resolve(result))
+			.catch(error => console.log(error));
+	});
+};
 export {
 	findAllFSchedule,
 	insertFSchedule,
 	searchFlightSchedule,
-	getFs,
-	saveFs
+	NumberChair,
+	revenueFlight
 };

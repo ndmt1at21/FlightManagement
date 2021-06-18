@@ -39,4 +39,14 @@ const insertFSchedule = catchAsync(
 	}
 );
 
-export = { findAllFSchedule, insertFSchedule };
+const revenueFlight = catchAsync(
+	async (req: Request, res: Response, next: NextFunction) => {
+		fScheduleServices.revenueFlight().then(data => {
+			res.json({
+				data: data,
+				message: 'successfully!!!'
+			});
+		});
+	}
+);
+export = { findAllFSchedule, insertFSchedule, revenueFlight };
