@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import * as SettingService from '../services/settingService';
-import * as FlightService from '../services/flightServices';
 import { Setting } from '../models/settingModel';
 import catchAsync from '../ultis/catchAsync';
 import { getManager } from 'typeorm';
@@ -29,6 +28,7 @@ const updateSetting = catchAsync(
 				setting.giatri = giatri;
 				setting.tinhtrang = tinhtrang ? tinhtrang : true;
 				console.log(setting);
+				getManager().save(setting);
 			} else {
 				res.status(404).json({
 					message: "Can't find setting from input !!!"

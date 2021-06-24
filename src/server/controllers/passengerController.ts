@@ -26,51 +26,61 @@ const buyTicket = catchAsync(
 		let data = req.body;
 		const { findPassenger, findTicket } = passengerServices;
 		let service = findPassenger(data.email);
-		let passenger = new Passenger();
-		service
+		await service
 			.then(KH => {
 				if (KH) {
-					if (KH) {
-						passenger = KH;
-					} else {
-						passenger.lastName = data.lastName;
-						passenger.CMND = data.CMND;
-						passenger.email = data.email;
-						passenger.phone = data.phone;
-					}
+					//passenger = KH;
+				} else {
+					KH = new Passenger();
+					KH.lastName = data.lastName;
+					KH.CMND = data.CMND;
+					KH.email = data.email;
+					KH.phone = data.phone;
+					KH.books = [];
 				}
 				let ticket = findTicket(data.id);
 				ticket
 					.then(tk => {
-						getSetting(7).then(timebuy => {
-							let limit = moment(timebuy.giatri, 'HH:mm');
-							let now = moment();
-							console.log(limit);
-							limit.add({ hour: now.hours(), minute: now.minutes() });
+						getSetting(7)
+							.then(timebuy => {
+								let limit = moment(timebuy.giatri, 'HH:mm');
+								let now = moment();
+								limit.add({ hour: now.hours(), minute: now.minutes() });
 
-							let timeticket = moment(tk.fs.KhoiHanh);
-							let check = timeticket.diff(limit);
-							console.log(limit);
-							console.log(timeticket);
-							console.log(check);
-							if (check > 0) {
-								if (passenger.books === []) {
-									passenger.books = [tk];
+								let timeticket = moment(tk.fs.KhoiHanh);
+								let check = timeticket.diff(limit);
+								if (check > 0) {
+									if (KH.books === []) {
+										KH.books = [tk];
+									} else {
+										let check = KH.books.findIndex((elem: any) => {
+											return elem.id === tk.id;
+										});
+										console.log(check);
+										if (check === -1) {
+											KH.books.push(tk);
+										} else {
+											res.status(400).json({
+												status: 'bad request',
+												message:
+													'Ticket cant buy from this passenger!!!'
+											});
+											next();
+										}
+									}
+									NumberChair(tk.fs.id, tk.hangve, 1); // Thêm số ghế khi có vé đặt
+									getManager().save(KH);
+									res.json({
+										message: 'Add ticket successfully!!!'
+									});
 								} else {
-									passenger.books.push(tk);
+									res.status(400).json({
+										status: 'bad request',
+										message: 'Ticket cant Reserve!!!'
+									});
 								}
-								NumberChair(tk.fs.id, tk.hangve, 1); // Thêm số ghế khi có vé đặt
-								getManager().save(passenger);
-								res.json({
-									message: 'Add ticket successfully!!!'
-								});
-							} else {
-								res.status(400).json({
-									status: 'bad request',
-									message: 'Ticket cant Reserve!!!'
-								});
-							}
-						});
+							})
+							.catch(error => console.log('get Setting : ' + error));
 					})
 					.catch(error => console.log('find Ticket : ' + error));
 			})

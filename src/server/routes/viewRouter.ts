@@ -2,13 +2,17 @@ import { Router } from 'express';
 import userController from '../controllers/userController';
 import authController from '../controllers/authController';
 import fScheduleController from '../controllers/flightScheduleController';
+import flightController from '../controllers/flightController';
 const router = Router();
 
-router.post('/login', authController.login);
+router.get('/', authController.IsloggedIn, flightController.findAllFlight);
+router.post('/');
+
 router.get('/dashboard', authController.IsloggedIn, userController.findAllUser);
 router.post(
 	'/listRevenutFlight',
-	authController.IsloggedIn,
+	authController.protect,
+	authController.restrictTo('admin'),
 	fScheduleController.revenueFlight
 );
 

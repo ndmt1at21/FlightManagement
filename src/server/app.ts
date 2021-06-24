@@ -6,6 +6,7 @@ import fScheduleRouter from './routes/flightScheduleRouter';
 import ticketRouter from './routes/ticketRouter';
 import settingRouter from './routes/settingRouter';
 import passengerRouter from './routes/passengerRouter';
+import viewRouter from './routes/viewRouter';
 import interRouter from './routes/interRouter';
 import path from 'path';
 import dotenv from 'dotenv';
@@ -37,6 +38,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(`${__dirname}/public`));
 
+app.use('/', viewRouter);
 app.use('/users', userRouter);
 app.use('/flight', flightRouter);
 app.use('/airport', interRouter);

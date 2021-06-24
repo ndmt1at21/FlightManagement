@@ -3,22 +3,23 @@ import { NextFunction, Request, Response } from 'express';
 import * as flightServices from '../services/flightServices';
 import catchAsync from '../ultis/catchAsync';
 import { Flight } from '../models/flightModel';
+import userController from './userController';
 const findAllFlight = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const flight = await flightServices.findAllFlight();
-
-		res.status(200).json({
-			status: 'success',
+		let data = req.session.user;
+		console.log(data);
+		res.json({
 			data: {
 				flight
-			}
+			},
+			message: data ? 'Welcome to my website, ' + data.Username : ''
 		});
 	}
 );
 const findAllFlightName = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const flight = await flightServices.findAllFlightName();
-
 		res.status(200).json({
 			status: 'success',
 			data: {
@@ -70,11 +71,13 @@ const insertFlightname = catchAsync(
 							res.json({
 								message: 'Add flightname successfully!!!'
 							});
+							next();
 						} else {
 							res.status(400).json({
 								status: 'bad request',
 								message: 'The number of the flight overlimit !!!'
 							});
+							next();
 						}
 					})
 					.catch(error => console.log(error));
