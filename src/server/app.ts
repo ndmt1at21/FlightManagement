@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { NextFunction } from 'express';
 import errorHandler from './controllers/errorHandler';
 import userRouter from './routes/userRouter';
 import flightRouter from './routes/flightRouter';
@@ -8,6 +8,7 @@ import settingRouter from './routes/settingRouter';
 import passengerRouter from './routes/passengerRouter';
 import viewRouter from './routes/viewRouter';
 import interRouter from './routes/interRouter';
+import adminRouter from './routes/adminRouter';
 import path from 'path';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
@@ -23,7 +24,7 @@ app.use(
 		resave: false,
 		saveUninitialized: true,
 		cookie: {
-			//secure: true }
+			//secure: true
 		}
 	})
 );
@@ -46,6 +47,12 @@ app.use('/schedule', fScheduleRouter);
 app.use('/ticket', ticketRouter);
 app.use('/setting', settingRouter);
 app.use('/passenger', passengerRouter);
+app.use('/dashboard', adminRouter);
+app.use(function (req, res, next) {
+	res.status(404).json({
+		message: 'Page not found'
+	});
+});
 app.use(errorHandler.globalErrorHandler);
 
 export default app;

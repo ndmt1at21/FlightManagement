@@ -3,12 +3,10 @@ import { NextFunction, Request, Response } from 'express';
 import * as flightServices from '../services/flightServices';
 import catchAsync from '../ultis/catchAsync';
 import { Flight } from '../models/flightModel';
-import userController from './userController';
 const findAllFlight = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const flight = await flightServices.findAllFlight();
 		let data = req.session.user;
-		console.log(data);
 		res.json({
 			data: {
 				flight
@@ -17,6 +15,7 @@ const findAllFlight = catchAsync(
 		});
 	}
 );
+
 const findAllFlightName = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const flight = await flightServices.findAllFlightName();
@@ -52,9 +51,7 @@ const insertFlight = catchAsync(
 		let flight = new Flight();
 		const data = req.body;
 		flightServices.insertFlight(data, flight);
-		res.json({
-			message: 'Add flight successfully!!!'
-		});
+		next();
 	}
 );
 const insertFlightname = catchAsync(
@@ -66,7 +63,7 @@ const insertFlightname = catchAsync(
 					.getCountFlight()
 					.then(countF => {
 						console.log(countF + ' - ' + SoSB.giatri);
-						if (SoSB.giatri > countF) {
+						if (parseInt(SoSB.giatri) > countF) {
 							flightServices.insertFlightname(id, name);
 							res.json({
 								message: 'Add flightname successfully!!!'

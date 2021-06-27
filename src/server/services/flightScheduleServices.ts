@@ -1,13 +1,14 @@
 import { FlightSchedule } from '../models/flightScheduleModel';
-import { Flight } from '../models/flightModel';
 import { getManager, getConnection } from 'typeorm';
-
 const findAllFSchedule = async (): Promise<any> => {
 	return new Promise<any>((resolve, rejects) => {
-		const query: string = `SELECT f."SBDi", f."SBDen", fs."KhoiHanh", fs."ThoiGian",
-                (f."SLGheThuong" + f."SLGheVip" - fs."SoGheDatThuong" - fs."SoGheDatVip") as SoGheTrong,
-                (fs."SoGheDatThuong" + fs."SoGheDatVip") as SoGheDat
-               FROM Flight f join Flight_Schedule fs on f.id = fs."idChuyenBay"`;
+		const query: string = `SELECT nf1.id as SBDiID, nf2.id as SBDenID, nf1."TenSanBay" as TenSBDi, nf2."TenSanBay" as TenSBDen, temp."KhoiHanh", temp."ThoiGian", temp."ThoiGianBay"
+		FROM Name_Flight nf1, Name_Flight nf2,(SELECT f."sBDiId" as sbdi, f."sBDenId" as sbden, fs."KhoiHanh", fs."ThoiGian",fs."ThoiGianBay",
+													(f."SLGheThuong" + f."SLGheVip" - fs."SoGheDatThuong" - fs."SoGheDatVip") as SoGheTrong,
+													(fs."SoGheDatThuong" + fs."SoGheDatVip") as SoGheDat
+													   FROM Flight f join Flight_Schedule fs on f.id = fs."forCBId") AS temp
+		WHERE nf1.id = temp.sbdi AND nf2.id = temp.sbden
+		LIMIT 10`;
 		const data = getManager()
 			.query(query)
 			.then(result => resolve(result))
@@ -42,14 +43,17 @@ const NumberChair = async (
 const searchFlightSchedule = async (
 	SBDi: string,
 	SBDen: string,
-	KhoiHanh: Date
+	KhoiHanh: string
 ): Promise<any> => {
 	return new Promise<any>((resolve, rejects) => {
-		const query: string = `SELECT f."SBDi", f."SBDen", fs."KhoiHanh", fs."ThoiGian",
-        (f."SLGheThuong" + f."SLGheVip" - fs."SoGheDatThuong" - fs."SoGheDatVip") as SoGheTrong,
-        (fs."SoGheDatThuong" + fs."SoGheDatVip") as SoGheDat
-       FROM Flight f join Flight_Schedule fs on f.id = fs."idChuyenBay"
-       WHERE f."SBDi" = '${SBDi}' AND f."SBDen" = '${SBDen}' AND fs."KhoiHanh" = '${KhoiHanh}'`;
+		const query: string = `	   SELECT nf1.id as SBDiID, nf2.id as SBDenID, nf1."TenSanBay" as TenSBDi, nf2."TenSanBay" as TenSBDen, temp."KhoiHanh", temp."ThoiGian", temp."ThoiGianBay",
+		temp.soghetrong, temp.soghedat
+		 FROM Name_Flight nf1, Name_Flight nf2,(SELECT f."sBDiId" as sbdi, f."sBDenId" as sbden, fs."KhoiHanh", fs."ThoiGian",fs."ThoiGianBay",
+												 (f."SLGheThuong" + f."SLGheVip" - fs."SoGheDatThuong" - fs."SoGheDatVip") as SoGheTrong,
+												 (fs."SoGheDatThuong" + fs."SoGheDatVip") as SoGheDat
+													FROM Flight f join Flight_Schedule fs on f.id = fs."forCBId"
+													WHERE f."sBDiId" = '${SBDi}' AND f."sBDenId" = '${SBDen}' AND fs."KhoiHanh" = '${KhoiHanh}') AS temp
+		 WHERE nf1.id = temp.sbdi AND nf2.id = temp.sbden`;
 		const data = getManager()
 			.query(query)
 			.then(result => resolve(result))

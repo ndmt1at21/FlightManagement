@@ -13,7 +13,4 @@ export class Interairport {
 
 	@Column({ nullable: true })
 	Ghichu: string;
-
-	// // Hooks
-	// @BeforeUpdate()
 }

@@ -16,7 +16,6 @@ const findAllInter = catchAsync(
 		});
 	}
 );
-
 const insertInter = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const data = req.body;
@@ -46,7 +45,6 @@ const insertInter = catchAsync(
 			.catch(error => console.log(error));
 	}
 );
-
 const FlightInterAirport = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const { idCB, idInter } = req.body;

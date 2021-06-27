@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, getManager } from 'typeorm';
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 @Entity()
 export class Setting {
 	@PrimaryColumn({ generated: 'rowid' })
@@ -15,6 +15,4 @@ export class Setting {
 
 	@Column({ nullable: true })
 	tinhtrang: boolean;
-	// // Hooks
-	// @BeforeUpdate()
 }

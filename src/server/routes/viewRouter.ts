@@ -1,19 +1,13 @@
 import { Router } from 'express';
-import userController from '../controllers/userController';
 import authController from '../controllers/authController';
 import fScheduleController from '../controllers/flightScheduleController';
-import flightController from '../controllers/flightController';
+import viewController from '../controllers/viewController';
 const router = Router();
 
-router.get('/', authController.IsloggedIn, flightController.findAllFlight);
-router.post('/');
-
-router.get('/dashboard', authController.IsloggedIn, userController.findAllUser);
-router.post(
-	'/listRevenutFlight',
-	authController.protect,
-	authController.restrictTo('admin'),
-	fScheduleController.revenueFlight
+router.get('/', authController.IsloggedIn, viewController.indexView);
+router.get(
+	'/search',
+	authController.IsloggedIn,
+	fScheduleController.searchScheduleFlight
 );
-
 export default router;

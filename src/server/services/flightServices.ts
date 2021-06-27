@@ -5,7 +5,7 @@ import { getManager, getConnection } from 'typeorm';
 
 const findAllFlight = async (): Promise<Flight[]> => {
 	const posRepo = getManager().getRepository(Flight);
-	return posRepo.find();
+	return posRepo.find({ relations: ['Inter'] });
 };
 const findAllFlightName = async (): Promise<NameFlight[]> => {
 	const posRepo = getManager().getRepository(NameFlight);

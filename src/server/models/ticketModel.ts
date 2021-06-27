@@ -1,13 +1,4 @@
-import {
-	Column,
-	Entity,
-	JoinColumn,
-	ManyToOne,
-	OneToOne,
-	PrimaryColumn,
-	PrimaryGeneratedColumn
-} from 'typeorm';
-import { Passenger } from './passengerModel';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { FlightSchedule } from './flightScheduleModel';
 
 @Entity()
@@ -21,9 +12,9 @@ export class Ticket {
 	@Column()
 	giatien: number;
 
-	@Column({ nullable: true })
+	@Column({ nullable: true, default: false })
 	status: boolean;
 
 	@ManyToOne(() => FlightSchedule)
-	fs: number;
+	fs: FlightSchedule;
 }

@@ -5,5 +5,5 @@ const router = Router();
 
 router.get('/all', SettingController.showAllSetting);
 router.post('/update', SettingController.updateSetting);
-router.post('/create',SettingController.insertSetting);
+router.post('/create', SettingController.insertSetting);
 export default router;

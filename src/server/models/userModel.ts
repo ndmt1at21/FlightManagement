@@ -6,7 +6,6 @@ import {
 	AfterLoad,
 	PrimaryColumn
 } from 'typeorm';
-import { trimString } from '../ultis/columnTransform';
 import bcrypt from 'bcrypt';
 @Entity()
 export class User {
