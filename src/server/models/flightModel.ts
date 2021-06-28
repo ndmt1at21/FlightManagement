@@ -1,12 +1,9 @@
 import {
 	Entity,
 	Column,
-	PrimaryColumn,
 	ManyToMany,
 	JoinTable,
-	BeforeInsert,
 	ManyToOne,
-	JoinColumn,
 	PrimaryGeneratedColumn
 } from 'typeorm';
 import { Interairport } from './Inter_airportModel';
@@ -31,6 +28,4 @@ export class Flight {
 	@ManyToMany(() => Interairport, { cascade: true })
 	@JoinTable()
 	Inter: Interairport[];
-
-	// // Hooks
 }

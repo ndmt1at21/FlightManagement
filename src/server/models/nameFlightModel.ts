@@ -1,5 +1,4 @@
-import { Entity, Column, PrimaryColumn, ManyToMany, JoinTable } from 'typeorm';
-import { Interairport } from './Inter_airportModel';
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 @Entity()
 export class NameFlight {
 	@PrimaryColumn()

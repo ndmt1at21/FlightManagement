@@ -22,13 +22,4 @@ export class FlightSchedule {
 
 	@ManyToOne(() => Flight)
 	forCB: number;
-	/**
-	 * TongSoGheDat
-	 */
-	public TongSoGheDat() {
-		return this.SoGheDatThuong + this.SoGheDatVip;
-	}
-	// // Hooks
-	// @BeforeInsert()
-	// @BeforeUpdate()
 }

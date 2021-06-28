@@ -11,7 +11,6 @@ import { findTicket } from '../services/ticketServices';
 const findAllPassenger = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const data = await passengerServices.findAll();
-
 		res.status(200).json({
 			status: 'success',
 			data: {
@@ -141,17 +140,6 @@ const cancelTicket = catchAsync(
 				}
 			})
 			.catch(error => console.log(error));
-		// await passengerServices.cancelTicket(req.body).then(result => {
-		// 	if (result[1] === 0) {
-		// 		res.json({
-		// 			message: 'Tickets which booked passenger not found!!!'
-		// 		});
-		// 	} else {
-		// 		res.json({
-		// 			message: 'Cancel ticket successfully!!!'
-		// 		});
-		// 	}
-		// });
 	}
 );
 

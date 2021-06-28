@@ -137,8 +137,14 @@ const protect = catchAsync(async (req, res, next) => {
 const restrictTo = function (...roles: any[]) {
 	// req.user from before middleware (protect)
 	return (req: Request, res: Response, next: NextFunction) => {
-		if (!roles.includes(req.session.user.role)) {
-			next(new AppError(`You don't have permission for this action`, 400));
+		if (!req.session.user) {
+			next(new AppError(`There are some error in server`, 500));
+		} else {
+			if (!roles.includes(req.session.user.role)) {
+				next(
+					new AppError(`You don't have permission for this action`, 400)
+				);
+			}
 		}
 		next();
 	};

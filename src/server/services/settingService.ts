@@ -5,8 +5,8 @@ const ShowallSetting = async (): Promise<Setting[]> => {
 	const posRepo = getManager().getRepository(Setting);
 	return posRepo.find();
 };
-const getSetting = async (id: number): Promise<any> => {
-	return getManager().findOne(Setting, id);
+const getSetting = async (id: number): Promise<Setting> => {
+	return getManager().findOneOrFail(Setting, id);
 };
 
 const insertSetting = async (): Promise<void> => {

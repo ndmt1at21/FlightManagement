@@ -4,7 +4,7 @@ import * as fScheduleServices from '../services/flightScheduleServices';
 import catchAsync from '../ultis/catchAsync';
 import moment from 'moment';
 
-const findAllFSchedule = catchAsync(
+const findFSchedule = catchAsync(
 	async (req: Request, res: Response, next: NextFunction) => {
 		const schedule = await fScheduleServices.findAllFSchedule();
 
@@ -49,4 +49,35 @@ const revenueFlight = catchAsync(
 		});
 	}
 );
-export = { findAllFSchedule, insertFSchedule, revenueFlight };
+
+const revenueYear = catchAsync(
+	async (req: Request, res: Response, next: NextFunction) => {
+		fScheduleServices.revenueFlightYear(req.query.year).then(data => {
+			res.json({
+				data: data,
+				message: 'successfully!!!'
+			});
+		});
+	}
+);
+const searchScheduleFlight = catchAsync(
+	async (req: Request, res: Response, next: NextFunction) => {
+		let { origin, destination, date }: any = req.query;
+		fScheduleServices
+			.searchFlightSchedule(origin, destination, date)
+			.then(data => {
+				res.json({
+					data: data,
+					message: 'successfully!!!',
+					title: 'Tìm kiếm chuyến bay'
+				});
+			});
+	}
+);
+export = {
+	findFSchedule,
+	insertFSchedule,
+	revenueFlight,
+	revenueYear,
+	searchScheduleFlight
+};
