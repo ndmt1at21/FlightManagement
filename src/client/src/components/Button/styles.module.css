@@ -1,0 +1,24 @@
+.button {
+	border: 0;
+	color: var(--color-gray-6);
+	background-color: transparent;
+	transition: all 0.2s;
+}
+
+.fill {
+	background-color: var(--color-gray-3);
+}
+
+.outline {
+	border: 2px solid var(--color-gray-6);
+}
+
+.primary {
+	color: var(--color-white);
+	background-color: var(--color-primary);
+}
+
+.secondary {
+	color: var(--color-white);
+	background-color: var(--color-secondary);
+}

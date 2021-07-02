@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.css';
+import './App.module.scss';
 
 function App() {
 	return (
 		<div className="App">
-			<header className="App-header">
+			<header className="AppHeader">
 				<p>
-					Edit <code>src/App.tsx</code> and save to reload.
+					Edit <code>src/App.tsx</code> and save to reload .
 				</p>
 				<a
 					className="App-link"

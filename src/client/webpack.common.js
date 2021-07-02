@@ -23,14 +23,24 @@ const config = {
 		publicPath: '/',
 		filename: 'static/js/[name].[hash].js'
 	},
-	resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx'] },
+	resolve: {
+		extensions: ['.ts', '.tsx', '.js', '.jsx'],
+		alias: {
+			'@src': path.resolve('src'),
+			'@components': path.resolve('src/components'),
+			'@types': path.resolve('src/@types')
+		}
+	},
 	plugins: [
-		new Dotenv(),
+		new HtmlWebpackPlugin({
+			template: 'public/index.html'
+		}),
 		new InterpolateHtmlPlugin({
-			PUBLIC_URL: process.env.PUBLIC_URL
+			PUBLIC_URL: '.'
 		}),
 		new CopyPlugin({ patterns: [copyPluginPattern] }),
-		new CleanWebpackPlugin()
+		new CleanWebpackPlugin(),
+		new Dotenv()
 	],
 	module: {
 		rules: [
@@ -46,6 +56,10 @@ const config = {
 				use: ['ts-loader']
 			},
 			{
+				test: /\.(s[ac]ss|css)$/,
+				use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+			},
+			{
 				test: /\.(eot|ttf|woff|woff2)$/,
 				use: [
 					{
@@ -55,10 +69,6 @@ const config = {
 						}
 					}
 				]
-			},
-			{
-				test: /\.(s[ac]ss|css)$/,
-				use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
 			},
 			{
 				test: /\.(svg|png|jpg|jpeg|gif)$/,
