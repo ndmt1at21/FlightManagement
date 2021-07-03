@@ -1,26 +1,67 @@
+// Color
 :root {
-	--color-primary: #0194f3;
-	--color-primary-light: #2f80ed;
-	--color-primary-dark: #017fd1;
+	--ifm-color-primary: #0194f3;
+	--ifm-color-primary-light: #2f80ed;
+	--ifm-color-primary-dark: #018ae2;
+	--ifm-color-primary-darker: #017fd1;
 
-	--color-secondary: #ff5e1f;
-	--color-secondary-light: #ffa785;
-	--color-secondary-dark: #eb4200;
+	--ifm-color-secondary: #ff5e1f;
+	--ifm-color-secondary-light: #ffa785;
+	--ifm-color-secondary-dark: #ff520e;
+	--ifm-color-secondary-darker: #fc4700;
 
-	--color-white: #ffffff;
-	--color-gray-1: #f2f2f2;
-	--color-gray-2: #e0e0e0;
-	--color-gray-3: #bdbdbd;
-	--color-gray-4: #828282;
-	--color-gray-5: #4f4f4f;
-	--color-gray-6: #333333;
+	--ifm-color-white: #ffffff;
+	--ifm-color-black: #111111;
 
-	--text-color-primary: var(--color-gray-6);
-	--text-color-secondary: var(--color-gray-4);
+	--ifm-color-gray-1: #f2f2f2;
+	--ifm-color-gray-2: #e0e0e0;
+	--ifm-color-gray-3: #bdbdbd;
+	--ifm-color-gray-4: #828282;
+	--ifm-color-gray-5: #4f4f4f;
+	--ifm-color-gray-6: #333333;
 
-	--font-size-small: clamp(0.625rem, 0.567rem + 0.256vw, 0.875rem);
-	--font-size-medium: clamp(0.75rem, 0.567rem + 0.256vw, 1rem);
-	--font-size-large: clamp(0.875rem, 0.567rem +0.256vw, 1.125rem);
-	--font-size-xl: clamp(1rem, 0.567rem + 0.256vw, 1.25rem);
-	--font-size-2xl: clamp(1.25rem, 0.567rem + 0.256vw, 1.375rem);
+	--ifm-text-color-primary: var(--color-gray-6);
+	--ifm-text-color-secondary: var(--color-gray-4);
+	--ifm-text-color-primary-revert: var(--ifm-color-white);
+}
+
+// Typohography
+:root {
+	--ifm-h1-font-size: clamp(1.375rem, 0.567rem + 0.256vw, 1.4rem);
+	--ifm-h2-font-size: clamp(1.25rem, 0.567rem + 0.256vw, 1.375rem);
+	--ifm-h3-font-size: clamp(1rem, 0.567rem + 0.256vw, 1.25rem);
+	--ifm-h4-font-size: clamp(0.875rem, 0.567rem +0.256vw, 1.125rem);
+	--ifm-h5-font-size: clamp(0.75rem, 0.567rem + 0.256vw, 1rem);
+	--ifm-h6-font-size: clamp(0.625rem, 0.567rem + 0.256vw, 0.875rem);
+	--ifm-font-size-base: 100%;
+
+	--ifm-font-weight-light: 300;
+	--ifm-font-weight-normal: 400;
+	--ifm-font-weight-semibold: 500;
+	--ifm-font-weight-bold: 700;
+	--ifm-font-weight-base: var(--ifm-font-weight-normal);
+}
+
+// Another constant
+:root {
+	--ifm-global-transition-fast: 200ms;
+	--ifm-global-transition-slow: 400ms;
+
+	--ifm-global-border-radius: 10px;
+	--ifm-global-border-width: 2px;
+}
+
+// Button
+:root {
+	--ifm-button-color: var(--ifm-text-color-primary);
+	--ifm-button-background-color: transparent;
+	--ifm-button-border-color: transparent;
+	--ifm-button-border-width: var(--ifm-global-border-width);
+	--ifm-button-padding-vertical: 0.5rem;
+	--ifm-button-padding-horizontal: 1.5rem;
+	--ifm-button-multiplier: 1;
+	--ifm-button-transition: var(--ifm-global-transition-fast);
+	--ifm-button-border-radius: calc(
+		var(--ifm-button-multiplier) * var(--ifm-global-border-radius)
+	);
 }

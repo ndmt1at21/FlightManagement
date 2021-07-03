@@ -1,24 +1,21 @@
-import { SC } from './styles';
-
-type ButtonProps = {
-	color?: 'primary' | 'secondary';
-	type?: 'fill' | 'outline';
-	disabled?: boolean;
-	children: React.ReactNode;
-};
+import { ButtonProps } from '@src/@types/ButtonProps';
+import classNames from 'classnames';
+import './styles.scss';
 
 export const Button = (props: ButtonProps): JSX.Element => {
-	const { color, type, disabled = false, children } = props;
+	const { color, type, size, disabled = false, children, onClick } = props;
+
+	const btnClass = classNames({
+		button: true,
+		[`button--${color}`]: color && true,
+		[`button--${type}`]: type && true,
+		[`button--${size}`]: size && true,
+		'button--disabled': disabled
+	});
 
 	return (
-		<>
-			<SC.GlobalScope />
-			<SC.Button
-				className={`${color ?? color} ${type ?? type}`}
-				disabled={disabled}
-			>
-				{children}
-			</SC.Button>
-		</>
+		<a className={btnClass} onClick={onClick}>
+			{children}
+		</a>
 	);
 };

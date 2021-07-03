@@ -1,6 +1,8 @@
 const common = require('./webpack.common');
 const { merge } = require('webpack-merge');
 const CompressionPlugin = require('compression-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 /** @type {import('webpack').Configuration} */
 const config = {

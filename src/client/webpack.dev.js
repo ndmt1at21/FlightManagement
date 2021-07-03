@@ -13,12 +13,13 @@ const config = {
 	],
 	devtool: 'source-map',
 	devServer: {
-		contentBase: path.resolve('src'),
+		contentBase: './dist',
 		port: 3000,
+		open: true,
 		hot: true,
-		watchContentBase: true,
-		open: true
-	}
+		watchContentBase: true
+	},
+	target: 'web'
 };
 
 module.exports = merge(common, config);

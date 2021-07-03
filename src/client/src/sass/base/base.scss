@@ -8,11 +8,11 @@
 
 html {
 	font-size: 100%;
+	box-sizing: border-box;
 }
 
 body {
 	font-family: 'Roboto', sans-serif;
-	box-sizing: border-box;
 	line-height: 1.7;
 	background-color: var(--color-gray-1);
 }
