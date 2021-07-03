@@ -5,6 +5,7 @@ import fScheduleController from '../controllers/flightScheduleController';
 import settingController from '../controllers/settingController';
 import flightController from '../controllers/flightController';
 import interController from '../controllers/interController';
+import ticketController from '../controllers/ticketController';
 const router = Router();
 
 router.use(authController.protect, authController.restrictTo('admin'));
