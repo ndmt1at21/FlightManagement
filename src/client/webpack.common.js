@@ -24,11 +24,10 @@ const config = {
 		filename: 'static/js/[name].[hash].js'
 	},
 	resolve: {
-		extensions: ['.ts', '.tsx', '.js', '.jsx'],
+		extensions: ['.ts', '.tsx', '.js', '.json'],
 		alias: {
 			'@src': path.resolve('src'),
-			'@components': path.resolve('src/components'),
-			'@types': path.resolve('src/@types')
+			'@components': path.resolve('src/components')
 		}
 	},
 	plugins: [
@@ -46,14 +45,9 @@ const config = {
 		rules: [
 			{ test: /\.html$/, use: 'html-loader' },
 			{
-				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
-				use: ['babel-loader']
-			},
-			{
 				test: /\.(ts|tsx)$/,
 				exclude: /node_modules/,
-				use: ['ts-loader']
+				use: ['babel-loader', 'ts-loader']
 			},
 			{
 				test: /\.(s[ac]ss|css)$/,
