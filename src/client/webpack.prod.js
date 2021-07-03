@@ -16,6 +16,26 @@ const config = {
 		}),
 		new CompressionPlugin({ test: /\.(css|js|svg)$/ })
 	],
+	module: {
+		rules: [
+			{
+				test: /\.(s[ac]ss|css)$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							importLoaders: 2,
+							modules: {
+								localIdentName: '[hash:base64:5]'
+							}
+						}
+					},
+					'sass-loader'
+				]
+			}
+		]
+	},
 	devtool: false,
 	performance: {
 		maxEntrypointSize: 51200

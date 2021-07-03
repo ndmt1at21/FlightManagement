@@ -50,10 +50,6 @@ const config = {
 				use: ['babel-loader', 'ts-loader']
 			},
 			{
-				test: /\.(s[ac]ss|css)$/,
-				use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-			},
-			{
 				test: /\.(eot|ttf|woff|woff2)$/,
 				use: [
 					{

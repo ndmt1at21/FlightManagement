@@ -11,6 +11,26 @@ const config = {
 			filename: '[name].css'
 		})
 	],
+	module: {
+		rules: [
+			{
+				test: /\.(s[ac]ss|css)$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							importLoaders: 2,
+							modules: {
+								localIdentName: '[local]'
+							}
+						}
+					},
+					'sass-loader'
+				]
+			}
+		]
+	},
 	devtool: 'source-map',
 	devServer: {
 		contentBase: './dist',
