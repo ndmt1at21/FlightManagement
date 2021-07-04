@@ -10,6 +10,10 @@
 	--ifm-color-secondary-dark: #ff520e;
 	--ifm-color-secondary-darker: #fc4700;
 
+	--ifm-color-danger: #fa383e;
+	--ifm-color-danger-light: #fb565b;
+	--ifm-color-danger-dark: #e13238;
+
 	--ifm-color-white: #ffffff;
 	--ifm-color-black: #111111;
 
@@ -20,8 +24,8 @@
 	--ifm-color-gray-5: #4f4f4f;
 	--ifm-color-gray-6: #333333;
 
-	--ifm-text-color-primary: var(--color-gray-6);
-	--ifm-text-color-secondary: var(--color-gray-4);
+	--ifm-text-color-primary: var(--ifm-color-gray-6);
+	--ifm-text-color-secondary: var(--ifm-color-gray-3);
 	--ifm-text-color-primary-revert: var(--ifm-color-white);
 }
 
@@ -64,4 +68,23 @@
 	--ifm-button-border-radius: calc(
 		var(--ifm-button-multiplier) * var(--ifm-global-border-radius)
 	);
+}
+
+// TextField
+:root {
+	--ifm-textfield-background-color: transparent;
+	--ifm-textfield-text-color: var(--ifm-text-color-primary);
+	--ifm-textfield-normal-color: var(--ifm-text-color-secondary);
+	--ifm-textfield-error-color: var(--ifm-color-danger);
+	--ifm-textfield-focus-color: var(--ifm-color-primary);
+	--ifm-textfield-border-color: var(--ifm-textfield-normal-color);
+	--ifm-textfield-border-radius: var(--ifm-global-border-radius);
+	--ifm-textfield-border-width: var(--ifm-global-border-width);
+	--ifm-textfield-border-state-width: calc(
+		var(--ifm-global-border-width) + 0.5px
+	);
+	--ifm-textfield-transition: var(--ifm-global-transition-fast)
+		cubic-bezier(0, 0, 0.2, 1);
+	--ifm-textfield-padding: 25px 15px 5px;
+	--ifm-textfield-height: 60px;
 }
