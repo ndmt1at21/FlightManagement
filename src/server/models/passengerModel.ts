@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import { IsEmail, IsIdentityCard, IsMobilePhone } from 'class-validator';
-import {
-	Column,
-	Entity,
-	JoinTable,
-	ManyToMany,
-	PrimaryGeneratedColumn
-} from 'typeorm';
-=======
 import {
 	Column,
 	Entity,
@@ -16,7 +6,6 @@ import {
 	ManyToMany
 } from 'typeorm';
 import { IsEmail, IsIdentityCard, IsMobilePhone } from 'class-validator';
->>>>>>> 2399988cba879993488d5ac53582a4a90c89e931
 import { Ticket } from './ticketModel';
 @Entity()
 export class Passenger {
