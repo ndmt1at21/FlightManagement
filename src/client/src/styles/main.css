@@ -1,0 +1,52 @@
+@import './variables.css';
+
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	font-size: 100%;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	line-height: 1.7;
+}
+
+#root {
+	background-color: #f3f4f6;
+}
+
+button,
+input,
+textarea {
+	font-size: var(--font-size-small);
+}
+
+div,
+span {
+	font-size: inherit;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: 'red';
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: transparent;
+}

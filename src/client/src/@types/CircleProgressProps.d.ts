@@ -1,0 +1,3 @@
+type CircleProgressProps = {
+	backdrop?: boolean;
+};

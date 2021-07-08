@@ -26,6 +26,7 @@ const config = {
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.json'],
 		alias: {
+			'@public': path.resolve('public'),
 			'@src': path.resolve('src'),
 			'@components': path.resolve('src/components')
 		}
@@ -59,6 +60,10 @@ const config = {
 						}
 					}
 				]
+			},
+			{
+				test: /\.svg$/,
+				use: ['@svgr/webpack']
 			},
 			{
 				test: /\.(svg|png|jpg|jpeg|gif)$/,

@@ -1,18 +1,15 @@
+import * as React from 'react';
 import { TextField } from '@src/components/TextField';
-import React from 'react';
+import { Header } from '@src/components/Header';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { theme } from '@src/lib/theme';
+import { MainLayout } from '@src/layouts/MainLayout';
+import { Home } from '@src/pages/Home';
 
-function App() {
+export const App = () => {
 	return (
-		<div className="App" style={{ padding: '10rem' }}>
-			<TextField
-				title="Header"
-				type="text"
-				require
-				errorMessage="fhfjhhjh"
-				validate={value => value.length > 2}
-			/>
-		</div>
+		<ThemeProvider theme={theme}>
+			<Home />
+		</ThemeProvider>
 	);
-}
-
-export default App;
+};

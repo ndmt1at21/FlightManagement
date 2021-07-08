@@ -1,23 +1,46 @@
-import { ButtonProps } from '@src/@types/ButtonProps';
-import classNames from 'classnames/bind';
-import styles from './styles.module.scss';
+import { Button as MButton, ButtonProps, Theme } from '@material-ui/core';
+import { makeStyles, createStyles } from '@material-ui/styles';
 
-const cx = classNames.bind(styles);
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+		containedPri: {
+			'&:active': {
+				backgroundColor: theme.palette.primary.darker
+			}
+		},
+		containedSec: {
+			'&:active': {
+				backgroundColor: theme.palette.secondary.darker
+			}
+		},
+		textOutlinePri: {
+			'&:active': {
+				backgroundColor: theme.palette.primary.lighter
+			}
+		},
+		textOutlineSec: {
+			'&:active': {
+				backgroundColor: theme.palette.secondary.lighter
+			}
+		}
+	})
+);
 
 export const Button = (props: ButtonProps): JSX.Element => {
-	const { color, type, size, disabled = false, children, onClick } = props;
-
-	const btnClass = cx({
-		button: true,
-		[`button--${color}`]: color ?? false,
-		[`button--${type}`]: type ?? false,
-		[`button--${size}`]: size ?? false,
-		[`button--disabled`]: disabled
-	});
-
+	const classes = useStyles();
 	return (
-		<a className={btnClass} type="button" onClick={onClick}>
-			{children}
-		</a>
+		<MButton
+			classes={{
+				containedPrimary: classes.containedPri,
+				containedSecondary: classes.containedSec,
+				textPrimary: classes.textOutlinePri,
+				textSecondary: classes.textOutlineSec,
+				outlinedPrimary: classes.textOutlinePri,
+				outlinedSecondary: classes.textOutlineSec
+			}}
+			{...props}
+		>
+			{props.children}
+		</MButton>
 	);
 };
