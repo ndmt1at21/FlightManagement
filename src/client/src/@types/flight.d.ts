@@ -4,3 +4,5 @@ type LocationTrip = {
 	cityCode: string;
 	airportName: string;
 };
+
+type PaperProps = {} & React.HTMLAttributes<HTMLDivElement>;

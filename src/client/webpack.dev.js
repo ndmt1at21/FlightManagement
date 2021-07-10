@@ -37,7 +37,8 @@ const config = {
 		port: 3000,
 		open: true,
 		hot: true,
-		watchContentBase: true
+		watchContentBase: true,
+		historyApiFallback: true
 	},
 	target: 'web'
 };

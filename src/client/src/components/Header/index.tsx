@@ -1,24 +1,35 @@
-import { Box } from '@material-ui/core';
+import {
+	Box,
+	BoxProps,
+	useTheme,
+	useMediaQuery,
+	Drawer
+} from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 import { makeStyles, createStyles } from '@material-ui/styles';
 import { ReactComponent as Logo } from '@public/Logo.svg';
 import { Button } from '@components/Button';
 import { Link } from '@components/Link';
+import { PATH } from '@src/constants/path';
+
+type HeaderProps = {} & BoxProps;
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
-			margin: '0 clamp(0.5rem, -2.65rem + 11vw, 10rem)',
 			display: 'flex',
 			flexDirection: 'row',
 			alignItems: 'center',
-			justifyContent: 'space-between',
-			height: 'clamp(3rem, 5vw, 5rem)'
+			justifyContent: 'space-between'
 		},
 		logoLink: {
 			height: '100%',
 			display: 'flex',
-			alignItems: 'center'
+			alignItems: 'center',
+
+			[theme.breakpoints.down('sm')]: {
+				height: '2rem'
+			}
 		},
 		logo: {
 			height: '50%'
@@ -41,15 +52,36 @@ const useStyles = makeStyles((theme: Theme) =>
 			'&:not(:last-child)': {
 				marginRight: theme.spacing(1)
 			}
+		},
+		sidebar: {
+			width: '5rem'
 		}
 	})
 );
 
-export const Header = (): JSX.Element => {
+export const Header = ({ className, ...rest }: HeaderProps): JSX.Element => {
 	const classes = useStyles();
 
-	return (
-		<Box component="header" className={classes.root}>
+	const theme = useTheme();
+	const match = useMediaQuery(theme.breakpoints.down('sm'));
+
+	return match ? (
+		<Drawer
+			className={classes.sidebar}
+			variant="permanent"
+			style={{ flexDirection: 'row' }}
+		>
+			<Link to={PATH.HOME} className={classes.logoLink}>
+				<Logo className={classes.logo} />
+			</Link>
+		</Drawer>
+	) : (
+		<Box
+			component="div"
+			open={true}
+			className={classes.root + ' ' + className}
+			{...rest}
+		>
 			<Link to="/" className={classes.logoLink}>
 				<Logo className={classes.logo} />
 			</Link>
@@ -63,10 +95,10 @@ export const Header = (): JSX.Element => {
 					</Link>
 				</Box>
 				<Box component="div">
-					<Link to="/login" className={classes.navButton}>
+					<Link to={PATH.LOGIN} className={classes.navButton}>
 						<Button variant="outlined">Đăng nhập</Button>
 					</Link>
-					<Link to="/register" className={classes.navButton}>
+					<Link to={PATH.REGISTER} className={classes.navButton}>
 						<Button variant="contained">Đăng ký</Button>
 					</Link>
 				</Box>

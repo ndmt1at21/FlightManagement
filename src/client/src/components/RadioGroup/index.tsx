@@ -46,7 +46,12 @@ export const RadioGroup = (props: RadioGroupProps): JSX.Element => {
 				{radioData?.map(radioInfo => (
 					<FormControlLabel
 						value={radioInfo.value}
-						control={<Radio classes={{ root: classes.radio }} />}
+						control={
+							<Radio
+								key={radioInfo.value}
+								classes={{ root: classes.radio }}
+							/>
+						}
 						label={radioInfo.value}
 					></FormControlLabel>
 				))}

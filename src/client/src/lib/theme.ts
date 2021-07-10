@@ -1,8 +1,44 @@
-import { createTheme, ThemeOptions } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { Shadows } from '@material-ui/core/styles/shadows';
 
 export const theme = createTheme({
 	components: {
+		MuiCssBaseline: {
+			styleOverrides: {
+				'*': {
+					margin: 0,
+					padding: 0,
+					'box-sizing': 'inherit'
+				},
+
+				html: {
+					'font-size': '100%',
+					'box-sizing': ' border-box'
+				},
+
+				body: {
+					'font-family': 'Roboto, sans-serif',
+					'line-height': '1.7'
+				},
+
+				'::-webkit-scrollbar': {
+					width: '10px'
+				},
+
+				'::-webkit-scrollbar-track': {
+					'border-radius': '10px'
+				},
+
+				'::-webkit-scrollbar-thumb': {
+					'border-radius': '10px',
+					'background-color': 'rgba(0, 0, 0, 0.2)'
+				},
+
+				'::-webkit-scrollbar-track-piece': {
+					'background-color': 'transparent'
+				}
+			}
+		},
 		MuiButtonBase: {
 			defaultProps: {
 				disableRipple: true
@@ -35,7 +71,7 @@ export const theme = createTheme({
 			darker: '#c2410c',
 			contrastText: '#fff'
 		},
-		background: { default: '#fff', paper: '#F3F4F6', footer: '#374151' },
+		background: { default: '#F3F4F6 ', paper: '#fff', footer: '#374151' },
 		text: { primary: '#111827', secondary: '#9CA3AF', contrast: '#fff' }
 	},
 	typography: {

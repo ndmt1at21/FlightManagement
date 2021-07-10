@@ -1,8 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 import { Box, BoxProps, Theme } from '@material-ui/core';
 
-type Paper = BoxProps;
-
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
 		backgroundColor: '#fff',
@@ -12,12 +10,16 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-export const Paper = (props: Paper): JSX.Element => {
+export const Paper = ({
+	children,
+	className,
+	...rest
+}: PaperProps): JSX.Element => {
 	const classes = useStyles();
 
 	return (
-		<Box component="div" className={classes.root + ' ' + props.className}>
-			{props.children}
-		</Box>
+		<div className={classes.root + ' ' + className} {...rest}>
+			{children}
+		</div>
 	);
 };

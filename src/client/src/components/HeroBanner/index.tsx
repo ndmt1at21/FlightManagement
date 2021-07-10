@@ -1,28 +1,30 @@
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import { Carousel } from '../Carousel';
 
 type HeroBannerProps = {
-	src: string;
-};
+	children: React.ReactNode;
+} & React.HTMLAttributes<HTMLDivElement>;
 
 const useStyles = makeStyles({
 	root: {
-		height: 'max(30rem, 90vh)'
-	},
-	imgHero: {
 		width: '100%',
-		height: '100%',
-		objectFit: 'cover'
-	}
+		height: '100%'
+	},
+	carousel: {}
 });
 
 export const HeroBanner = (props: HeroBannerProps): JSX.Element => {
-	const { src } = props;
+	const { children, className, ...rest } = props;
 	const classes = useStyles();
 
 	return (
-		<Box component="div" className={classes.root}>
-			<img src={src} alt="HeroBanner" className={classes.imgHero}></img>
+		<Box
+			component="div"
+			className={classes.root + ' ' + className}
+			{...props}
+		>
+			{children}
 		</Box>
 	);
 };

@@ -1,15 +1,13 @@
-import * as React from 'react';
-import { TextField } from '@src/components/TextField';
-import { Header } from '@src/components/Header';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
 import { theme } from '@src/lib/theme';
-import { MainLayout } from '@src/layouts/MainLayout';
-import { Home } from '@src/pages/Home';
+import { Routes } from '@src/routes/routes';
 
 export const App = () => {
 	return (
 		<ThemeProvider theme={theme}>
-			<Home />
+			<CssBaseline />
+			<Routes />
 		</ThemeProvider>
 	);
 };
