@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
+		color: 'inherit',
+		textDecoration: 'none',
 		transition: theme.transitions.create('color', {
 			duration: theme.transitions.duration.shortest
 		})

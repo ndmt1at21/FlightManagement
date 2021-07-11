@@ -2,8 +2,15 @@ import { Box, Input, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { RoundTripInputRenderer } from './components/RoundTripInputRenderer';
 import { ListLocation } from './components/ListLocation';
+import { useState } from 'react';
 
-type LocationPicker = {};
+type LocationPickerProps = {
+	locations: LocationTrip[];
+	onChange: (props: {
+		depart?: LocationTrip;
+		destination?: LocationTrip;
+	}) => void;
+};
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
@@ -15,24 +22,26 @@ const useStyles = makeStyles((theme: Theme) => ({
 	list: {}
 }));
 
-export const LocationPicker = (): JSX.Element => {
+export const LocationPicker = (props: LocationPickerProps): JSX.Element => {
+	const { locations, onChange } = props;
+
 	const classes = useStyles();
 
-	const a = {
-		airportName: 'Sân bay Tân Sân Nhất',
-		cityCode: 'SGN',
-		nation: 'Việt Nam',
-		city: 'Hồ Chí Minh'
-	};
+	const [filterText, setFilterText] = useState();
 
 	return (
 		<Box className={classes.root}>
-			<RoundTripInputRenderer
+			{/* <RoundTripInputRenderer
 				departDes={a}
 				returnDes={a}
 				className={classes.inputRenderer}
+				onChange={e => {setFilterText(e.target.value);}}
+			/> */}
+			<ListLocation
+				locations={[]}
+				filterText={'a'}
+				className={classes.list}
 			/>
-			<ListLocation locations={[a, a, a, a, a]} className={classes.list} />
 		</Box>
 	);
 };

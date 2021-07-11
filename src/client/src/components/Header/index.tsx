@@ -17,6 +17,7 @@ type HeaderProps = {} & BoxProps;
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
+			backgroundColor: 'red',
 			display: 'flex',
 			flexDirection: 'row',
 			alignItems: 'center',

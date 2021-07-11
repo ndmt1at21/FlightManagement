@@ -1,0 +1,14 @@
+<svg  viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 2">
+<circle id="Circle" cx="10" cy="10" r="9.75" fill="white" stroke="#BDBDBD" stroke-width="0.5"/>
+<g id="ArrowsLeftRight">
+<rect width="12.549" height="12.549" transform="translate(3.92163 3.92157)" fill="white"/>
+<g id="ArrowsLeftRight_2">
+<path id="Vector" d="M13.3335 10.9804L14.9021 12.549L13.3335 14.1177" stroke="#2F80ED" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M5.49023 12.549H14.902" stroke="#2F80ED" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M7.05886 9.41179L5.49023 7.84316L7.05886 6.27454" stroke="#2F80ED" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M14.902 7.84314H5.49023" stroke="#2F80ED" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+</svg>

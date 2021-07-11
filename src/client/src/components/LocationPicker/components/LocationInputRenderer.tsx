@@ -1,3 +1,4 @@
+import { BoxProps } from '@material-ui/core';
 import { Box, InputProps } from '@material-ui/core';
 import { Input, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
@@ -10,7 +11,7 @@ type LocationInputRenderer = {
 	value?: string;
 	placeholder?: string;
 	onChange?: React.ChangeEventHandler;
-} & InputProps;
+} & BoxProps;
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		borderRadius: '10px',
 		padding: theme.spacing(1, 2),
 		cursor: 'pointer',
-		width: '12rem',
+		width: '100%',
 		transition: theme.transitions.create('color', {
 			duration: theme.transitions.duration.shortest
 		})
@@ -54,7 +55,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 export const LocationInputRenderer = (
 	props: LocationInputRenderer
 ): JSX.Element => {
-	const { locTrip, className, value, onChange } = props;
+	const { locTrip, className, value, onChange, ...rest } = props;
 	const { airportName, city, cityCode, nation } = locTrip;
 
 	const classes = useStyles();
@@ -80,6 +81,7 @@ export const LocationInputRenderer = (
 			component="div"
 			ref={borderContainerRef}
 			className={classes.root + ' ' + className}
+			{...rest}
 		>
 			<Box
 				component="div"

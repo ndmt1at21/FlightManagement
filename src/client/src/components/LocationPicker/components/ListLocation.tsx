@@ -1,4 +1,10 @@
-import { List, ListItem, ListItemText, Theme } from '@material-ui/core';
+import {
+	List,
+	ListProps,
+	ListItem,
+	ListItemText,
+	Theme
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -19,40 +25,46 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 type ListLocationProps = {
 	locations: LocationTrip[];
-	className?: string;
+	filterText: string;
 	onClick?: (location: LocationTrip) => void;
-};
+} & ListProps;
 
 export const ListLocation = (props: ListLocationProps): JSX.Element => {
-	const { locations, className, onClick } = props;
+	const { locations, className, filterText, onClick } = props;
 
 	const classes = useStyles();
 
 	return (
 		<List component="div" className={classes.root + ' ' + className}>
-			{locations.map(location => {
-				const { city, cityCode } = location;
+			{locations
+				.filter(location => {
+					if (location.city.includes(filterText)) return true;
+					if (location.cityCode.includes(filterText)) return true;
+					return false;
+				})
+				.map(location => {
+					const { city, cityCode } = location;
 
-				return (
-					<ListItem
-						button
-						className={classes.listItem}
-						onClick={() => {
-							if (onClick) onClick(location);
-						}}
-					>
-						<ListItemText className={classes.itemCity}>
-							{city}
-						</ListItemText>
-						<ListItemText
-							disableTypography
-							className={classes.itemCityCode}
+					return (
+						<ListItem
+							button
+							className={classes.listItem}
+							onClick={() => {
+								if (onClick) onClick(location);
+							}}
 						>
-							{cityCode}
-						</ListItemText>
-					</ListItem>
-				);
-			})}
+							<ListItemText className={classes.itemCity}>
+								{city}
+							</ListItemText>
+							<ListItemText
+								disableTypography
+								className={classes.itemCityCode}
+							>
+								{cityCode}
+							</ListItemText>
+						</ListItem>
+					);
+				})}
 		</List>
 	);
 };
