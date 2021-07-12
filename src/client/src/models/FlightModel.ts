@@ -1,4 +1,8 @@
+import { AirportModel } from './AirportModel';
+
 export type FlightModel = {
 	id: string;
-	TenSanBay: string;
+	SLGheThuong: number;
+	SLGheVip: number;
+	Inter: AirportModel[];
 };

@@ -1,6 +1,6 @@
 import { Box, BoxProps, FormControl, MenuItem, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { postAirport, postAirportInter } from '@src/apis/airportApi';
+import { postAirportInter } from '@src/apis/airportApi';
 import { Button } from '@src/components/Button';
 import { CircleProgress } from '@src/components/CircleProgress';
 import { TextField } from '@src/components/TextField';
@@ -11,7 +11,7 @@ import { Snackbar } from '@components/Snackbar';
 import { AirportInterFormValues } from '@src/forms/AirportInterFormValues';
 import { Select } from '@components/Select';
 import { useEffect } from 'react';
-import { getAll } from '@src/apis/flightApi';
+import { getAllFlightNames } from '@src/apis/flightApi';
 import { FlightModel } from '@src/models/FlightModel';
 
 type AddInterAirport = {} & BoxProps;
@@ -43,7 +43,7 @@ export const AddInterAirport = (props: AddInterAirport): JSX.Element => {
 	const classes = useStyles();
 
 	useEffect(() => {
-		getAll().then(res => {
+		getAllFlightNames().then(res => {
 			console.log(res);
 			setFlights(res.data.data.flight as FlightModel[]);
 		});
@@ -75,7 +75,7 @@ export const AddInterAirport = (props: AddInterAirport): JSX.Element => {
 					<Select>
 						{flights.map(flight => (
 							<MenuItem key={flight.id} value={flight.id}>
-								{flight.TenSanBay}
+								{/* {flight.TenSanBay} */}
 							</MenuItem>
 						))}
 					</Select>

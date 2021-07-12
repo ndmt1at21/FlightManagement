@@ -1,8 +1,13 @@
 import { FlightFormValues } from '@src/forms/FlightFormValues';
 import axios from 'axios';
 
-export const getAll = () => {
+export const getAllFlightNames = () => {
 	const url = `${process.env.BASE_URL}/flight/allname`;
+	return axios.get(url);
+};
+
+export const getAllFlights = () => {
+	const url = `${process.env.BASE_URL}/flight/all`;
 	return axios.get(url);
 };
 
