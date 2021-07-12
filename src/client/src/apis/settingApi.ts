@@ -1,3 +1,4 @@
+import { SettingFormValues } from '@src/forms/SettingFormValues';
 import axios from 'axios';
 
 export const getAllSettings = () => {

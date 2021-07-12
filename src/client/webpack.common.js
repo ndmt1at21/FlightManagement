@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
+const { DefinePlugin } = require('webpack');
 
 /** @type {import('copy-webpack-plugin'.ObjectPattern} */
 const copyPluginPattern = {
@@ -40,7 +41,9 @@ const config = {
 		}),
 		new CopyPlugin({ patterns: [copyPluginPattern] }),
 		new CleanWebpackPlugin(),
-		new Dotenv()
+		new DefinePlugin({
+			'process.env': { BASE_URL: '"http://localhost:8000"' }
+		})
 	],
 	module: {
 		rules: [

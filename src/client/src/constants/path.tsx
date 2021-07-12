@@ -6,20 +6,27 @@ export const PATH = {
 };
 
 export const ADMIN_PATH = {
-	DASHBOARD: '/',
+	DASHBOARD: '/admin',
 	SCHEDULE: {
-		LIST: '/schedule'
+		BASE: '/admin/schedule',
+		LIST: '/admin/schedule'
 	},
 	FLIGHT: {
-		LIST: '/flight',
-		ADD: '/flight/add'
+		BASE: '/admin/flight',
+		LIST: '/admin/flight',
+		ADD: '/admin/flight/add'
 	},
 	AIRPORT: {
-		LIST: '/airport',
-		ADD: '/airport/add',
-		LIST_INTER: '/airport/inter',
-		ADD_INTER: '/airport/inter/add'
+		BASE: '/admin/airport',
+		LIST: '/admin/airport',
+		ADD: '/admin/airport/add',
+		LIST_INTER: '/admin/airport/inter',
+		ADD_INTER: '/admin/airport/inter/add'
 	},
-	REVENUE: { YEAR: '/revenue/year', FLIGHT: '/revenue/flight' },
-	SETTING: { LIST: '/setting' }
+	REVENUE: {
+		BASE: '/admin/revenue',
+		YEAR: '/admin/revenue/year',
+		FLIGHT: '/admin/revenue/flight'
+	},
+	SETTING: { BASE: '/admin/setting', LIST: '/admin/setting' }
 };

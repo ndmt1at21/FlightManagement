@@ -3,7 +3,18 @@ import { makeStyles } from '@material-ui/styles';
 import { ReactComponent as Logo } from '@public/Logo.svg';
 import { TextField } from '@components/TextField';
 import { Theme } from '@material-ui/core';
-import { Button } from '../Button';
+import { Button } from '@components/Button';
+import { Link } from '@components/Link';
+import { PATH } from '@src/constants/path';
+import { useState } from 'react';
+import { FormEventHandler } from 'react';
+import { LoginFormValues } from '@src/forms/LoginFormValue';
+import { useQuery } from '@src/hooks/useQuery';
+import { postLogin } from '@src/apis/userApi';
+import { CircleProgress } from '../CircleProgress';
+import { Redirect } from 'react-router-dom';
+import { Snackbar } from '@components/Snackbar';
+import { useAuth } from '@src/hooks/useAuth';
 
 type LoginProps = {} & BoxProps;
 
@@ -31,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		margin: theme.spacing(5, 0),
 		'& > *': {
 			'&:not(:last-child)': {
-				marginBottom: theme.spacing(1)
+				marginBottom: theme.spacing(2)
 			}
 		}
 	},
@@ -40,6 +51,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		fontWeight: theme.typography.fontWeightLight
 	},
 	actions: {
+		marginTop: theme.spacing(5),
 		width: '100%',
 		display: 'flex',
 		justifyContent: 'space-between'
@@ -47,25 +59,67 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export const Login = ({ className, ...rest }: LoginProps): JSX.Element => {
+	const { isAuthenticated } = useAuth();
+	if (isAuthenticated) return <Redirect to={PATH.HOME}></Redirect>;
+
 	const classes = useStyles();
+
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+
+	const [response, loading, hasError, msgError, setData] =
+		useQuery<LoginFormValues>(postLogin);
+
+	const handleSubmit: FormEventHandler = e => {
+		e.preventDefault();
+		setData({ username, password });
+	};
 
 	return (
 		<Box component="div" className={classes.root + ' ' + className} {...rest}>
+			{loading ? (
+				<CircleProgress />
+			) : hasError ? (
+				<Snackbar message={msgError} type="error" />
+			) : (
+				response && <Redirect to={PATH.HOME} />
+			)}
+
 			<Logo className={classes.logo} />
 			<Box component="h1" className={classes.title}>
 				Đăng nhập
 			</Box>
-			<FormControl component="form" className={classes.form}>
-				<TextField label="Email hoặc tên tài khoản" required />
-				<TextField label="Mật khẩu" required />
-			</FormControl>
+			<FormControl
+				component="form"
+				className={classes.form}
+				onSubmit={handleSubmit}
+			>
+				<TextField
+					label="Email hoặc tên tài khoản"
+					required
+					name="username"
+					value={username}
+					onChange={e => setUsername(e.target.value)}
+				/>
+				<TextField
+					label="Mật khẩu"
+					type="password"
+					required
+					name="password"
+					value={password}
+					onChange={e => setPassword(e.target.value)}
+				/>
 
-			<Box component="div" className={classes.actions}>
-				<Button color="primary">Tạo tài khoản</Button>
-				<Button color="primary" variant="contained">
-					Đăng nhập
-				</Button>
-			</Box>
+				<Box component="div" className={classes.actions}>
+					<Link to={PATH.REGISTER}>
+						<Button color="primary">Tạo tài khoản</Button>
+					</Link>
+
+					<Button color="primary" variant="contained" type="submit">
+						Đăng nhập
+					</Button>
+				</Box>
+			</FormControl>
 		</Box>
 	);
 };

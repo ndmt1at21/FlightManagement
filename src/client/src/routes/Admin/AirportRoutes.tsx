@@ -4,15 +4,9 @@ import { AddInterAirport } from '@src/pages/Admin/Airport/AddInterAirport';
 import { ListAirport } from '@src/pages/Admin/Airport/ListAirport';
 import { ListInterAirport } from '@src/pages/Admin/Airport/ListInterAirport';
 import { Route, Switch } from 'react-router-dom';
+import { ErrorRoutes } from '../ErrorRoutes';
 
 export const AirportRoutes = () => {
-	const components = [
-		<ListAirport />,
-		<AddAirport />,
-		<ListInterAirport />,
-		<AddInterAirport />
-	];
-
 	return (
 		<Switch>
 			<Route exact path={ADMIN_PATH.AIRPORT.LIST}>
@@ -30,6 +24,8 @@ export const AirportRoutes = () => {
 			<Route exact path={ADMIN_PATH.AIRPORT.ADD_INTER}>
 				<AddInterAirport />
 			</Route>
+
+			<ErrorRoutes />
 		</Switch>
 	);
 };

@@ -1,3 +1,4 @@
+import { FlightScheduleFormValues } from '@src/forms/FlightScheduleFormValues';
 import axios from 'axios';
 
 export const postSchedule = (data: FlightScheduleFormValues) => {

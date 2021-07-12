@@ -1,3 +1,4 @@
+import { FlightFormValues } from '@src/forms/FlightFormValues';
 import axios from 'axios';
 
 export const getAll = () => {
@@ -5,7 +6,7 @@ export const getAll = () => {
 	return axios.get(url);
 };
 
-export const putFlight = (data: FlightFormValues) => {
+export const postFlight = (data: FlightFormValues) => {
 	const url = `${process.env.BASE_URL}/flight/insert`;
-	return axios.put(url, data);
+	return axios.post(url, data);
 };

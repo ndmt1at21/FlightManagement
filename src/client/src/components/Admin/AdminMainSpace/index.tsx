@@ -3,7 +3,9 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {},
-	header: {}
+	header: {
+		paddingBottom: '2rem'
+	}
 }));
 
 type AdminMainSpaceProps = {

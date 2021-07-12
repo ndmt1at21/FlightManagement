@@ -1,3 +1,4 @@
+import { SearchFlightValues } from '@src/forms/SearchFlightValues';
 import axios from 'axios';
 
 export const postSearch = (data: SearchFlightValues) => {

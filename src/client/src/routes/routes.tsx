@@ -1,32 +1,26 @@
-import { RevenueFlight } from '@src/pages/Admin/Revenue/RevenueFlight';
-import { PageNotFound } from '@src/pages/PageNotFound';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { AirportRoutes } from './Admin/AirportRoutes';
-import { DashBoardRoutes } from './Admin/DashBoardRoutes';
-import { FlightRoutes } from './Admin/FlightRoutes';
-import { RevenueRoutes } from './Admin/RevenueRoutes';
-import { ScheduleRoutes } from './Admin/ScheduleRoutes';
-import { SettingRoutes } from './Admin/SettingRoutes';
-import { AuthRoutes } from './AuthRoutes';
 import { ErrorRoutes } from './ErrorRoutes';
 import { HomeRoutes } from './HomeRoutes';
+
+import { AuthenticatedGuard } from '@src/guards/AuthenticatedGuard';
+import { AdminRoutes } from './Admin/AdminRoutes';
+import { Login } from '@src/pages/Login';
+import { Register } from '@src/components/Register';
+import { PublicRoutes } from './PublicRoutes';
+import { ADMIN_PATH, PATH } from '@src/constants/path';
 
 export const Routes = () => {
 	return (
 		<BrowserRouter>
-			<Route exact path="/">
-				<DashBoardRoutes />
-			</Route>
-			<Route path="/">
-				<AirportRoutes />
-				<FlightRoutes />
-				<ScheduleRoutes />
-				<SettingRoutes />
-				<RevenueRoutes />
-			</Route>
-			<Route path="*">
+			<Switch>
+				<Route path={ADMIN_PATH.DASHBOARD}>
+					<AdminRoutes />
+				</Route>
+				<Route path={PATH.HOME}>
+					<PublicRoutes />
+				</Route>
 				<ErrorRoutes />
-			</Route>
+			</Switch>
 		</BrowserRouter>
 	);
 };

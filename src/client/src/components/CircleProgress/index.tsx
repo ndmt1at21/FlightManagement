@@ -3,31 +3,27 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
 	progress: {
+		width: '100vw',
+		height: '100vh',
+		backdropFilter: 'blur(3px)',
 		display: 'flex',
-		'justify-content': 'center',
-		'align-items': 'center'
-	},
-	backdrop: {
-		'background-color': 'var(--ifm-circle-progress-color)',
-		width: ' 100%',
-		height: '100%'
+		justifyContent: 'center',
+		alignItems: 'center',
+		position: 'fixed'
 	},
 	top: {
 		color: '#eee',
 		position: 'absolute'
 	},
 	bottom: {
-		'animation-duration': '550ms',
-		color: 'red'
+		animationDuration: '550ms'
 	},
 	circle: {
-		'stroke-linecap': ' round'
+		strokeLinecap: 'round'
 	}
 });
 
 export const CircleProgress = (props: CircleProgressProps) => {
-	const { backdrop = false } = props;
-
 	const classes = useStyles();
 
 	return (

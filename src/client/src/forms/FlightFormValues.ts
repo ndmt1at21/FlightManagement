@@ -1,6 +1,6 @@
-type FlightFormValues = {
+export type FlightFormValues = {
 	SBDi: string;
 	SBDen: string;
 	SLGheThuong: number;
-	SLGheVip: 150;
+	SLGheVip: number;
 };

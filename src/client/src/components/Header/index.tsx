@@ -17,7 +17,6 @@ type HeaderProps = {} & BoxProps;
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
-			backgroundColor: 'red',
 			display: 'flex',
 			flexDirection: 'row',
 			alignItems: 'center',
@@ -67,15 +66,7 @@ export const Header = ({ className, ...rest }: HeaderProps): JSX.Element => {
 	const match = useMediaQuery(theme.breakpoints.down('sm'));
 
 	return match ? (
-		<Drawer
-			className={classes.sidebar}
-			variant="permanent"
-			style={{ flexDirection: 'row' }}
-		>
-			<Link to={PATH.HOME} className={classes.logoLink}>
-				<Logo className={classes.logo} />
-			</Link>
-		</Drawer>
+		<Box></Box>
 	) : (
 		<Box
 			component="div"
@@ -83,7 +74,7 @@ export const Header = ({ className, ...rest }: HeaderProps): JSX.Element => {
 			className={classes.root + ' ' + className}
 			{...rest}
 		>
-			<Link to="/" className={classes.logoLink}>
+			<Link to={PATH.HOME} className={classes.logoLink}>
 				<Logo className={classes.logo} />
 			</Link>
 			<Box className={classes.nav}>

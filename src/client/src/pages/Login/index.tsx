@@ -5,8 +5,7 @@ import { MainLayout } from '@src/layouts/MainLayout';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
-		width: '100vw',
-		height: '100vh',
+		width: '100%',
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center'
@@ -16,6 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		height: 'clamp(25rem, 80vh, 30rem)',
 		backgroundColor: theme.palette.background.paper,
 		border: `1px solid ${theme.palette.primary.main}`,
+		margin: theme.spacing(5, 0, 10),
 
 		[theme.breakpoints.down('sm')]: {
 			border: 0,

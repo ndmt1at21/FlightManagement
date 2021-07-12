@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		flex: 1
 	},
 	main: {
-		padding: theme.spacing(5)
+		padding: theme.spacing(0, 5)
 	}
 }));
 

@@ -5,14 +5,10 @@ import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 import { StyledEngineProvider, ThemeProvider } from '@material-ui/core/styles';
 
-import { BrowserRouter } from 'react-router-dom';
-
 ReactDOM.render(
 	<React.StrictMode>
 		<StyledEngineProvider injectFirst>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
+			<App />
 		</StyledEngineProvider>
 	</React.StrictMode>,
 	document.getElementById('root')

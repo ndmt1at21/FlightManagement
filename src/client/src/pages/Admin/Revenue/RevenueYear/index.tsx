@@ -1,5 +1,5 @@
 import { AdminLayout } from '@src/layouts/AdminLayout';
 
 export const RevenueYear = (): JSX.Element => {
-	return <AdminLayout>REVENUE YEAR</AdminLayout>;
+	return <AdminLayout header="Doanh thu theo Năm">REVENUE YEAR</AdminLayout>;
 };

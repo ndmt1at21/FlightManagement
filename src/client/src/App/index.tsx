@@ -1,13 +1,13 @@
-import { ThemeProvider } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
-import { theme } from '@src/lib/theme';
+import { ThemeContextProvider } from '@src/context/ThemeProvider';
+import { AuthContextProvider } from '@src/context/AuthContextProvider';
 import { Routes } from '@src/routes/routes';
 
 export const App = () => {
 	return (
-		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<Routes />
-		</ThemeProvider>
+		<ThemeContextProvider>
+			<AuthContextProvider>
+				<Routes />
+			</AuthContextProvider>
+		</ThemeContextProvider>
 	);
 };

@@ -61,9 +61,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 		'&.Mui-selected': {
 			stroke: theme.palette.text.contrast,
 			color: theme.palette.text.contrast,
-			backgroundColor: theme.palette.primary.dark,
+			backgroundColor: theme.palette.primary.main,
 			'&:hover': {
-				backgroundColor: theme.palette.primary.dark
+				backgroundColor: theme.palette.primary.main
 			}
 		}
 	}

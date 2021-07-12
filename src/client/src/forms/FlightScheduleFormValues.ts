@@ -1,4 +1,4 @@
-type FlightScheduleFormValues = {
+export type FlightScheduleFormValues = {
 	ThoiGian: Date;
 	KhoiHanh: Date;
 	ThoiGianBay: Date;
