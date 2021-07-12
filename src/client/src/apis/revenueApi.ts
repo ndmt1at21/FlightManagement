@@ -5,7 +5,7 @@ export const getRevenueFlight = () => {
 	return axios.get(url);
 };
 
-export const getRevenueFlight = () => {
-	const url = `${process.env.BASE_URL}/dashboard/listRevenutFlight`;
+export const getRevenueYear = () => {
+	const url = `${process.env.BASE_URL}/dashboard/listRevenutYear`;
 	return axios.get(url);
 };
